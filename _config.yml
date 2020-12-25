@@ -1,0 +1,30 @@
+remote_theme: pmarsceill/just-the-docs
+markdown: kramdown
+title: kusto.blog
+author: yonileibowitz
+logo: "/resources/images/adx-logo.png"
+search_enabled: true
+heading_anchors: true
+plugins:
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-avatar
+  - jemoji
+  - jekyll-mentions
+  - jekyll-include-cache
+google_site_verification: HtqjvGpOO7zMqHjzMmE6bM658bRZqGQewz_h-QyRnns
+aux_links:
+  "LinkedIn":
+    - "https://www.linkedin.com/in/yonileibo/"
+  "Stack Overflow":
+    - "https://stackoverflow.com/users/7861807/yoni"
+  "GitHub":
+    - "https://github.com/yonileibowitz/kusto.blog"
+  "Official Documentation":
+    - "https://docs.microsoft.com/en-us/azure/data-explorer"
+social:
+  name: Yoni Leibowitz
+  links:
+    - https://www.linkedin.com/in/yonileibo/
