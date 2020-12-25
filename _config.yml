@@ -14,7 +14,7 @@ plugins:
   - jemoji
   - jekyll-mentions
   - jekyll-include-cache
-google-site-verification: HtqjvGpOO7zMqHjzMmE6bM658bRZqGQewz_h-QyRnns
+google_site_verification: HtqjvGpOO7zMqHjzMmE6bM658bRZqGQewz_h-QyRnns
 aux_links:
   "LinkedIn":
     - "https://www.linkedin.com/in/yonileibo/"
