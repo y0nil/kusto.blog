@@ -1,5 +1,7 @@
 ---
 title: Update policies for in-place ETL in Kusto (Azure Data Explorer)
+redirect_to:https://yonileibowitz.github.io/blog-posts/update-policies.html
+
 ---
 **[Go back home](../index.md)**
 
