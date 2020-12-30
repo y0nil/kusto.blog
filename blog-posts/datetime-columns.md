@@ -38,7 +38,7 @@ The same is true if you want to query historical data, e.g. a specific week's wo
         ```
         This returns `2018-11-08 15:05:02.0000000`.
 
-2. If your data doesn't include datetime values, but you still want to be able to filter it according to when it got ingested, you can use the [ingestion_time() function](https://docs.microsoft.com/en-us/azure/kusto/query/ingestiontimefunction){:target="_blank"}, assuming the [ingestion time policy](https://docs.microsoft.com/en-us/azure/kusto/concepts/ingestiontimepolicy){:target="_blank"} is enabled on your table (which is true, by default).
+2. If your data doesn't include datetime values, but you still want to be able to filter it according to when it got ingested, you can use the [ingestion_time() function](https://docs.microsoft.com/en-us/azure/kusto/query/ingestiontimefunction){:target="_blank"}, assuming the [ingestion time policy](https://docs.microsoft.com/en-us/azure/kusto/management/ingestiontimepolicy){:target="_blank"} is enabled on your table (which is true, by default).
     - When the policy is enabled, a hidden and internal datetime column (whose values are obtained using the `ingestion_time()` function) is added to the table, and it gets populated for each record that gets ingested into the table.
 
 3. Due to the fact only the minimum and maximum values for datetime column are stored in the extent's metadata (as previously explained), if you have skewed values *from the past or future* being ingested alongside ones from the present, this can limit the ability to pre-filter irrelevant extents at query planning time.

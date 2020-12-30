@@ -49,7 +49,7 @@ Ane example use case could be when you want to replace a subset of the data in y
 1. Let's assume your table name it `T`.
 2. You can create a new table, `T_temp` as shown in the previous section. This table will have the same schema as `T`.
 3. Ingest all your data into `T_temp`, and specify unique [drop-by](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview#drop-by-extent-tags){:target="_blank"} tags when ingesting this data (so that in the future, you'll be able to identify and replace it, according to this tag).
-    - Multiple ingestion methods allow you to the `tags` [ingestion property](https://docs.microsoft.com/en-us/azure/kusto/management/data-ingestion/#ingestion-properties){:target="_blank"}.
+    - Multiple ingestion methods allow you to the `tags` [ingestion property](https://docs.microsoft.com/en-us/azure/data-explorer/ingestion-properties){:target="_blank"}.
     - For this example, let's use `drop-by:2018-10-26` as our tag.
 4. When all ingestion completes successfully, use the [.replace extents](https://docs.microsoft.com/en-us/azure/kusto/management/extents-commands#replace-extents){:target="_blank"} command to:
     1. Drop all [extents (data shards)](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"} with the relevant [drop-by](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview#drop-by-extent-tags){:target="_blank"} tags from `T`.
@@ -63,7 +63,7 @@ Ane example use case could be when you want to replace a subset of the data in y
 5. Both the *move* and *drop* operations are performed in a single transaction, so throughout your entire ingestion process and after it, the full data set in `T` remains available for queries.
 6. Assuming the tagged data shards that were originally in `T` are no longer of interest, simply drop the `T_temp` table using the [.drop table](https://docs.microsoft.com/en-us/azure/kusto/management/tables#drop-table){:target="_blank"} command. Or, if you have additional flows utilizing it for the same purpose in parallel - drop the specific [extents (data shards)](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"} from it, using the [.drop extents](https://docs.microsoft.com/en-us/azure/kusto/management/extents-commands#drop-extents){:target="_blank"} command.
 
-> **Important Note:** there could be a downside to over-using extent tagging (e.g. if you tag each ingestion operation with a unique [drop-by](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview#drop-by-extent-tags){:target="_blank"} tag). Make sure you're familiar with the performance notes in [this document](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview#extent-tagging){:target="_blank"}. If you do find you use them excessively, it's recommended you use the [.drop extent tags](https://docs.microsoft.com/en-us/azure/kusto/management/extents-commands#drop-extent-tags){:target="_blank"} command to remove tags which are no longer required.
+> **Important Note:** there could be a downside to over-using extent tagging (e.g. if you tag each ingestion operation with a unique [drop-by](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview#drop-by-extent-tags){:target="_blank"} tag). Make sure you're familiar with the performance notes in [this document](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview#extent-tagging){:target="_blank"}. If you do find you use them excessively, it's recommended you use the [.drop extent tags](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/drop-extent-tags){:target="_blank"} command to remove tags which are no longer required.
 
 ### Moving extents (data shards) between tables
 
@@ -73,14 +73,13 @@ If, however, you're simply in need of adding new data to your table, without rep
 
 ### Background processes and how they affect moving and replacing extents
 
-As you may have read [here](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"}, an extent's lifetime may include it getting merged or rebuilt with other extents, to reach some optimum size. Such operations, as well as operation run for enforcing the [data retention policy]({:target="_blank"}){:target="_blank"}, are run in the background of the cluster, and can at times conflict with other operations that you run at extent level, include [moving](https://docs.microsoft.com/en-us/azure/kusto/management/extents-commands#move-extents){:target="_blank"} and [replacing](https://docs.microsoft.com/en-us/azure/kusto/management/extents-commands#replace-extents){:target="_blank"} extents.
+As you may have read [here](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"}, an extent's lifetime may include it getting merged or rebuilt with other extents, to reach some optimum size. Such operations, as well as operation run for enforcing the [data retention policy]({:target="_blank"}){:target="_blank"}, are run in the background of the cluster, and can at times conflict with other operations that you run at extent level, include [moving](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/move-extents){:target="_blank"} and [replacing](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/replace-extents){:target="_blank"} extents.
 
 The two latter work in an "all-or-nothing" manner, meaning that in case one of the source extents that existed at the beginning of the operation no longer exists when the operation is about to be committed, the entire `.move` or `.replace` operation will fail. This can happen, for example, if the source extent was dropped due to retention, or merged with another extent, as part of another parallel operation.
 
 It's important that you handle such potential failure cases accordingly, by interpreting the output of the commands correctly, and be ready to retry the operation in cases where it makes sense to do so.
 
-- The output of both commands is documented [here](https://docs.microsoft.com/en-us/azure/kusto/management/extents-commands
-){:target="_blank"}.
+- The output of both commands is documented [here](https://docs.microsoft.com/en-us/azure/kusto/management/extents-commands){:target="_blank"}.
 
 - If you're running the command in `async` mode, simply follow its `State` when you run `.show operations <operation_id>` to see whether it succeeds or fails (there is no partial success, as explained above).
 - Alterntively, when not running in `async` mode, you will get a more detailed result set back once the execution completes:
@@ -89,9 +88,9 @@ It's important that you handle such potential failure cases accordingly, by inte
 
 ## Back-filling data
 
-In some cases, you want to ingest historical data into your table(s), however you still want it to be managed according to the policies (e.g. [retention policy](https://docs.microsoft.com/en-us/azure/kusto/concepts/retentionpolicy){:target="_blank"}, [caching policy](https://docs.microsoft.com/en-us/azure/kusto/concepts/cachepolicy){:target="_blank"}) you have defined.
+In some cases, you want to ingest historical data into your table(s), however you still want it to be managed according to the policies (e.g. [retention policy](https://docs.microsoft.com/en-us/azure/kusto/management/retentionpolicy){:target="_blank"}, [caching policy](https://docs.microsoft.com/en-us/azure/kusto/management/cachepolicy){:target="_blank"}) you have defined.
 
-For these cases, the `creationTime` [ingestion property](https://docs.microsoft.com/en-us/azure/kusto/management/data-ingestion/#ingestion-properties){:target="_blank"} is very useful. Multiple ingestion methods allow you to specify this ingestion property, with the effect of it overriding the [extent's (data shard's)](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"} creation time - This is a metadata property of the [extent (data shard)](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"}, according to which both [retention policy](https://docs.microsoft.com/en-us/azure/kusto/concepts/retentionpolicy){:target="_blank"} and [caching policy](https://docs.microsoft.com/en-us/azure/kusto/concepts/cachepolicy){:target="_blank"} policies are applied.
+For these cases, the `creationTime` [ingestion property](https://docs.microsoft.com/en-us/azure/data-explorer/ingestion-properties){:target="_blank"} is very useful. Multiple ingestion methods allow you to specify this ingestion property, with the effect of it overriding the [extent's (data shard's)](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"} creation time - This is a metadata property of the [extent (data shard)](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"}, according to which both [retention policy](https://docs.microsoft.com/en-us/azure/kusto/management/retentionpolicy){:target="_blank"} and [caching policy](https://docs.microsoft.com/en-us/azure/kusto/management/cachepolicy){:target="_blank"} policies are applied.
 
 ---
 

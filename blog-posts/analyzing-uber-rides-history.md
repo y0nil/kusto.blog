@@ -69,7 +69,7 @@ this time I decided to show a different way, super-easy as well, using Kusto's [
 3. I invoked the following [.set-or-append command](){:target="_blank"} against my database, to get the data ingested.
     - Note that I'm running a query against the source data before ingesting it, as the datetime format in the source data provided by [Uber](https://www.uber.com) isn't in a standard or [supported format](https://docs.microsoft.com/en-us/azure/kusto/query/scalar-data-types/datetime).
     - This also allows me to not have to create the table in advance, the command takes care of it for me.    
-    - I could have achieved the same goal of pre-processing the data at ingestion time by using an [update policy](https://docs.microsoft.com/en-us/azure/kusto/concepts/updatepolicy){:target="_blank"}.
+    - I could have achieved the same goal of pre-processing the data at ingestion time by using an [update policy](https://docs.microsoft.com/en-us/azure/kusto/management/updatepolicy){:target="_blank"}.
 
     ```
     .set-or-append UberRides <| 

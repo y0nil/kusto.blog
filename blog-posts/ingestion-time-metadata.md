@@ -11,7 +11,7 @@ title: Specifying metadata at ingestion time in Kusto (Azure Data Explorer)
 
 *Last modified: 12/21/2018*
 
-It's simple to get the time of ingestion for each record that gets ingested into your Kusto table, by verifying the table's [ingestion time policy](https://docs.microsoft.com/en-us/azure/kusto/concepts/ingestiontimepolicy){:target="_blank"} is enabled,
+It's simple to get the time of ingestion for each record that gets ingested into your Kusto table, by verifying the table's [ingestion time policy](https://docs.microsoft.com/en-us/azure/kusto/management/ingestiontimepolicy){:target="_blank"} is enabled,
 and using the [ingestion_time()](https://docs.microsoft.com/en-us/azure/kusto/query/ingestiontimefunction){:target="_blank"} function at query time.
 
 In some cases, you may want to include additional metadata at record level, for instance - the name of the source file/blob the record originated from,
