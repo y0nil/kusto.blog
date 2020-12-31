@@ -48,7 +48,7 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 ### **Haven't seen it in action yet?**
 
-Why not start off with a couple of videos:
+Start off with a couple of videos:
 
 #### **Microsoft Ignite, Orlando, September 2018**
 
@@ -67,17 +67,27 @@ Why not start off with a couple of videos:
 
 ### **Customer stories**
 
-- [Mobile user acquisition PaaS converts terabytes of real-time data into user engagement](https://customers.microsoft.com/en-us/story/816542-zoomd-technologies-azure-professional-services-israel-en){:target="_blank"}
 - [Better forecasting, safer driving with Bosch](https://customers.microsoft.com/en-us/story/816933-bosch-automotive-azure-germany){:target="_blank"}
+- [Data-driven Dodo Pizza raises performance with Azure Data Explorer](https://customers.microsoft.com/en-us/story/851838-dodo-pizza-consumer-goods-azure-en-russia){:target="_blank"}
+- [Global consultancy Milliman powers award - winning Arius insurance reserving software using Azure Data Explorer](https://customers.microsoft.com/en-us/story/842088-milliman-insurance-azure-en-united-states){:target="_blank"}
 - [Global software company Episerver uses Azure Data Explorer to gain enhanced consumer insight](https://customers.microsoft.com/en-us/story/817285-episerver-professional-services-azure-sweden){:target="_blank"}
-- [How Azure Data Explorer Was Able to Accelerate Namogoo’s Classification Processes 170X Faster](https://www.namogoo.com/blog/our-technology/how-azure-data-explorer-accelerates-namogoos-classification-processes-170x-faster/){:target="_blank"}
+- [Growing an innovative energy partnership across Australia](https://customers.microsoft.com/en-us/story/847171-agl-energy-azure-en-australia){:target="_blank"}
 - [How Azure Data Explorer Helped Us Make Sense of 1M Log Lines per Second](https://engineering.taboola.com/azure-data-explorer-helped-us-make-sense-1m-log-lines-per-second/){:target="_blank"}
+- [How Azure Data Explorer Was Able to Accelerate Namogoo’s Classification Processes 170X Faster](https://www.namogoo.com/blog/our-technology/how-azure-data-explorer-accelerates-namogoos-classification-processes-170x-faster/){:target="_blank"}
+- [MFTBC's Truckonnect uses Azure Data Explorer to improve the customer experience and lower costs](https://customers.microsoft.com/en-us/story/850967-mitsubishi-fuso-automotive-azure){:target="_blank"}
+- [Mobile user acquisition PaaS converts terabytes of real-time data into user engagement](https://customers.microsoft.com/en-us/story/816542-zoomd-technologies-azure-professional-services-israel-en){:target="_blank"}
+- [NY fintech streamlines buy-side data analysis with Azure Data Explorer](https://customers.microsoft.com/en-us/story/825356-financial-fabric-banking-and-capital-markets-azure-powerbi-en-united-states){:target="_blank"}
 
 ---
 
 ### **Read more about it**
 
-There's lots to learn and read about. I'd recommend starting with the following links:
+There's a lot to learn and read about. Start with the following links:
+
+#### **October 2020 updates**
+
+- [Azure Data Explorer - Re-imagine Telemetry Analytics (Uri Barash @ Microsoft Tech Community)](https://techcommunity.microsoft.com/t5/azure-data-explorer/azure-data-explorer-reimagine-telemetry-analytics/ba-p/1777362){:target="_blank"}
+- [Online event summary](https://techcommunity.microsoft.com/t5/azure-data-explorer/azure-data-explorer-online-event-october-14-event-summary/ba-p/1793662){:target="_blank"}
 
 #### **General availability announcement (February 2019)**
 
@@ -104,13 +114,13 @@ Jurgen Willis @ Microsoft Azure blog)](https://azure.microsoft.com/en-us/blog/in
 
 ---
 
-### **Other things I think you should know**
+### **Other stuff you should know**
 
 ### **Highlights from Kusto (Azure Data Explorer) documentation**
 
 - [Creating a cluster and databases](https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-portal){:target="_blank"}
 - [Query best practices](https://docs.microsoft.com/en-us/azure/kusto/query/best-practices){:target="_blank"}
-- [Schema best practices](https://docs.microsoft.com/en-us/azure/kusto/management/best-practices){:target="_blank"}
+- [Schema best practices](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/management-best-practices){:target="_blank"}
 - [Ingestion best practices](https://docs.microsoft.com/en-us/azure/kusto/api/netfx/kusto-ingest-best-practices){:target="_blank"}
 
 ---
