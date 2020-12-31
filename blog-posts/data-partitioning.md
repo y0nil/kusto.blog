@@ -42,7 +42,7 @@ There are very specific scenarios in which the benefits of partitioning a table 
 
 Homogeneous extents include metadata on their partition values, that allows Kusto's query planner to filter out data shards without having to perform an index lookup or scanning the data. As result, a significant reduction in resources required to serve queries is expected, when a query filters on the partition key.
 
-**Example**
+##### Example
 
 - Table `T` has a `string`-typed column named `TenantId`, which represents a unique identifier for a tenant that the data in the table belongs to.
 - `T` includes data for multiple tenants, say `10,000` or more.
@@ -68,7 +68,7 @@ When a table has a hash partition key defined in its partitioning policy, there 
 
 Setting the `Default` mode makes sense when the cardinality of the hash partition key is very high, and partitions are expected to be ~equally-sized.
 
-**Example**
+##### Example
 
 - Table `T` has a `string`-typed column named `DeviceId`, which represents a unique identifier for a device that the data in the table was sent from.
 - 10s of millions of sensors/devices are spread across the world, and they all emit a similar amount of metrics per unit of time.
@@ -87,7 +87,7 @@ Setting the `Default` mode makes sense when the cardinality of the hash partitio
 
 In many systems, data is ingested close to when it was generated at its source. More than that - data is ingested in-order, e.g. data from 10 minutes ago is ingested after data from 15 minutes ago. There are some cases, however, in which the patterns are different.
 
-**Example**
+##### Example
 
 - Data can be spread across source files according to a different partition key, and not according to time.
 - For example: A single file may include all records for a single division, however those records span a period of 3 years.
