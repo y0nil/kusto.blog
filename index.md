@@ -16,8 +16,6 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 - **[Just another Kusto hacker *(JAKH)*](blog-posts/jakh.md){:target="_blank"}**
 
-- **[Working with JSON-formatted data in Kusto (Azure Data Explorer)](blog-posts/working-with-json-formatted-data.md){:target="_blank"}**
-
 - **[Analyzing Uber rides history in Kusto (Azure Data Explorer)](blog-posts/analyzing-uber-rides-history.md){:target="_blank"}**
 
 - **[Analyzing Spotify streaming history in Kusto (Azure Data Explorer)](blog-posts/analyzing-spotify-streaming-history.md){:target="_blank"}**
@@ -25,10 +23,6 @@ and will help you make sure you make the most out of your Kusto cluster.
 - **[Analyzing 2 Billion New York City Taxi rides in Kusto (Azure Data Explorer)](blog-posts/analyzing-nyc-taxi-rides.md){:target="_blank"}**
 
 ## **Data Ingestion & Management**
-
-- **[Data partitioning in Kusto (Azure Data Explorer)](blog-posts/data-partitioning.md){:target="_blank"}**
-
-- **[Follower clusters in Kusto (Azure Data Explorer)](blog-posts/follower-cluster.md){:target="_blank"}**
 
 - **[Ingesting 2 Billion New York City Taxi rides into Kusto (Azure Data Explorer)](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
 
