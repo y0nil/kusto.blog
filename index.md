@@ -39,8 +39,8 @@ and will help you make sure you make the most out of your Kusto cluster.
 - **[Specifying metadata at ingestion time](blog-posts/ingestion-time-metadata.md){:target="_blank"}**
 
 - **[Advanced data management in Kusto (Azure Data Explorer)](blog-posts/advanced-data-management.md){:target="_blank"}**
-    - [Committing multiple bulks of data in a single transaction](blog-posts/advanced-data-management.md#committing-multiple-bulks-of-data-in-a-single-transaction){:target="_blank"}
-    - [Back-filling data](blog-posts/advanced-data-management.md#back-filling-data){:target="_blank"}
+  - [Committing multiple bulks of data in a single transaction](blog-posts/advanced-data-management.md#committing-multiple-bulks-of-data-in-a-single-transaction){:target="_blank"}
+  - [Back-filling data](blog-posts/advanced-data-management.md#back-filling-data){:target="_blank"}
 
 ---
 
