@@ -24,6 +24,8 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 ## **Data Ingestion & Management**
 
+- **[Data partitioning in Kusto (Azure Data Explorer)](blog-posts/data-partitioning.md){:target="_blank"}**
+
 - **[Ingesting 2 Billion New York City Taxi rides into Kusto (Azure Data Explorer)](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
 
 - **[Update policies for in-place ETL in Kusto (Azure Data Explorer)](blog-posts/update-policies.md){:target="_blank"}**
