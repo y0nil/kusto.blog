@@ -9,24 +9,32 @@ title: Data partitioning in Kusto (Azure Data Explorer)
 
 # Data partitioning in Kusto (Azure Data Explorer)
 
-By default, tables in Kusto are partitioned according to the time data is ingested. In the majority of use cases, there is no need to change that (unlike other technologies, in which data partitioning is necessary in many cases, to reach better performance).
+By default, tables in Kusto are partitioned according to the time at which data is ingested. In the majority of use cases, there is no need to change that, unlike in other technologies, in which data partitioning is necessary in many cases, to reach better performance.
 
 In specific cases, it is possible and recommended to define a [Data partitioning policy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/partitioningpolicy){:target="_blank"}, to reach improved performance at query time.
+
+* TOC
+{:toc}
 
 ## How data partitioning works
 
 - When data is ingested into a table in a Kusto database, [data shards (extents)](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/extents-overview){:target="_blank"} are created.
-- To maintain query efficiency, smaller extents are merged into larger ones. That is is done automatically, as a background process. It reduces the management overhead of having a large number of extents to track, and allows Kusto to optimize its indexes and improve compression.
-- When a partitioning policy is defined on a table, extents participate in another background process *after* they're created (ingested), and *before* they are merged. This process re-ingests the data from the source extents and creates *homogeneous* extents. In these, all values in the column that is the table's partition key belong to the same partition.
-  - Because extents are not merged before they are *homogeneous*, it is important to make sure the cluster's maximum [capacity](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/capacitypolicy){:target="_blank"} for partitioning and for merges are balanced, so that:
-    - The rate of creating new extents isn't significantly higher than the rate of merging them.
-    - The overall number of extent in the database/cluster doesn't keep growing significantly over time.
-  - Because the partitioning process requires reading and re-ingesting the data again, the process is expected to have a continuous overhead on the cluster's resources utilization.
+- To maintain query efficiency, smaller extents are merged into larger ones.
+  - That is done automatically, as a background process.
+  - It reduces the management overhead of having a large number of extents to track.
+  - It also allows Kusto to optimize its indexes and improve compression.
+- When a partitioning policy is defined on a table, extents participate in another background process *after* they're created (ingested), and *before* they are merged.
+  - This process re-ingests the data from the source extents and creates *homogeneous* extents.
+  - In these, all values in the column that is the table's partition key belong to the same partition.
+- Because extents are not merged before they are *homogeneous*, it is important to make sure the cluster's maximum [capacity](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/capacitypolicy){:target="_blank"} for partitioning and for merges are balanced, so that:
+  - The rate of creating new extents isn't significantly higher than the rate of merging them.
+  - The overall number of extent in the database/cluster doesn't keep growing significantly over time.
+- Because the partitioning process requires reading and re-ingesting the data again, the process is expected to have a continuous overhead on the cluster's resources utilization.
 - In certain cases, this means that increasing [the size of the cluster](https://docs.microsoft.com/en-us/azure/data-explorer/manage-cluster-choose-sku){:target="_blank"} would be required.
 
 ## When to use data partitioning
 
-There are very specific scenarios in which the benefits of partitioning a table outweigh the overhead of resources being continuously invested in the process. In such cases, the upside is expected to be significant, and improve query performance several times.
+There are very specific scenarios in which the benefits of partitioning a table outweigh the overhead of resources being continuously invested in the process. In such cases, the upside is expected to be significant, and improve query performance several times. In [other cases](#when-not-to-use-data-partitioning), however, it can do more damage than good.
 
 ### Benefits of data partitioning
 
@@ -115,13 +123,9 @@ Specifically, **don't** use data partitioning when:
 - You have many outliers in your data, that will result with a large amount of extents.
   - For example: you defined a uniform range datetime partition key, with a range of 1 day, but there are many records with 'bad' datetime values in the column from the distant past/future (e.g. `0003-12-31` and `3020-07-11`).
 
-
 More importantly - make sure you:
 - Follow the guidelines in the [documentation](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/partitioningpolicy){:target="_blank"}
 - Monitor & measure the impact of the policies you set on the cluster.
-
-* TOC
-{:toc}
 
 ---
 
