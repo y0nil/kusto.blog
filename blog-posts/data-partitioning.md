@@ -36,13 +36,11 @@ In specific cases, it is possible and recommended to define a [Data partitioning
 
 There are very specific scenarios in which the benefits of partitioning a table outweigh the overhead of resources being continuously invested in the process. In such cases, the upside is expected to be significant, and improve query performance several times. In [other cases](#when-not-to-use-data-partitioning), however, it can do more damage than good.
 
-### Benefits of data partitioning
+### Filtering
 
-#### Pre-filtering
+Homogeneous extents include metadata on their partition values, that allows Kusto's query planner to filter out data shards without having to perform an index lookup or scanning the data. As result, a significant reduction in resources required to serve queries is expected, when a query includes an equality filter on the partition key.
 
-Homogeneous extents include metadata on their partition values, that allows Kusto's query planner to filter out data shards without having to perform an index lookup or scanning the data. As result, a significant reduction in resources required to serve queries is expected, when a query filters on the partition key.
-
-##### Example
+#### Example
 
 - Table `T` has a `string`-typed column named `TenantId`, which represents a unique identifier for a tenant that the data in the table belongs to.
 - `T` includes data for multiple tenants, say `10,000` or more.
@@ -57,37 +55,38 @@ Homogeneous extents include metadata on their partition values, that allows Kust
     | render timechart
     ```
   - The value `f83a65e0-da2b-42be-b59b-a8e25ea3954c` belongs to a single partition, out of the maximum number of partitions defined in the policy (for example: partition number `10` out of a total of `256`).
-- The filter on `TenantId` is highly efficient, as it allows Kusto's query planner to filter out any extents that belongs to partitions that aren't partition number `10`. Assuming equal-distribution of data across tenants in `T`, that means we're left with 1/256 (~0.39%) of the extents, even before evaluating the [datetime pre-filter](datetime-columns.md) and leveraging the default index on `TenantId`.
-- When the amount of concurrent queries gets higher (dozens or more), the benefit increases significantly - as each such query consumes less resources.
+- The filter on `TenantId` is highly efficient, as it allows Kusto's query planner to filter out any extents that belongs to partitions that aren't partition number `10`.
+  - Assuming equal-distribution of data across tenants in `T`, that means we're left with 1/256 (~0.39%) of the extents, even before evaluating the [datetime pre-filter](datetime-columns.md) and leveraging the default index on `TenantId`.
+- When the amount of concurrent queries is higher (dozens or more), the benefit increases significantly - as each such query consumes less resources.
 
-#### Joins / aggregations
+### Joins / aggregations
 
 When a table has a hash partition key defined in its partitioning policy, there are two different assignment modes:
-- `Default`: All homogeneous (partitioned) extents that belong to the same partition are assigned to the same node in the cluster.
-- `Uniform`: Extents' partition values are ignored, and extents are assigned uniformly to the cluster's nodes.
+- `Default`: All homogeneous extents that belong to the *same* partition are assigned to the *same* node in the cluster.
+- `Uniform`: Extents' partition values are *not* taken into account when assigning extents *uniformly* to the cluster's nodes.
 
-Setting the `Default` mode makes sense when the cardinality of the hash partition key is very high, and partitions are expected to be ~equally-sized.
+Choosing the `Default` mode makes sense when the cardinality of the hash partition key is very high, partitions are expected to be ~equally-sized, and the query pattern uses the [shuffle strategy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/shufflequery){:target="_blank"} often.
+- Queries that use the `shuffle` strategy, and in which the shuffle key used in `join`, `summarize` or `make-series` is the table's hash partition key - are expected to perform better. This is because the amount of data required to move across the cluster's nodes is significantly reduced.
 
-##### Example
+#### Example
 
 - Table `T` has a `string`-typed column named `DeviceId`, which represents a unique identifier for a device that the data in the table was sent from.
-- 10s of millions of sensors/devices are spread across the world, and they all emit a similar amount of metrics per unit of time.
+- 10s of millions of such devices are spread across the world, and they all emit a similar amount of metrics per unit of time.
 - Queries running against `T` aggregate over `DeviceId` using the `shuffle` strategy, with `DeviceId` as the shuffle key.
   - For example:
   ```
   T
   | where Timestamp > ago(1d)
-  | summarize hint.shufflekey = DeviceId arg_max(Temperature, RelativeHumidity) by DeviceId
+  | summarize hint.shufflekey = DeviceId arg_max(Temperature, RelativeHumidity) by DeviceId // <--
   | where RelativeHumidity > 75
   | count
   ```
-- When the partition assignment mode is `default`, queries that use the [shuffle strategy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/shufflequery){:target="_blank"}, and in which the shuffle key used in `join`, `summarize` or `make-series` is the table's hash partition key, are expected to perform better. That is because the amount of data required to move across the cluster's nodes is significnatly reduced.
 
-#### Backfill or unordered ingestion
+### Backfill or unordered ingestion
 
 In many systems, data is ingested close to when it was generated at its source. More than that - data is ingested in-order, e.g. data from 10 minutes ago is ingested after data from 15 minutes ago. There are some cases, however, in which the patterns are different.
 
-##### Example
+#### Example
 
 - Data can be spread across source files according to a different partition key, and not according to time.
 - For example: A single file may include all records for a single division, however those records span a period of 3 years.
@@ -98,14 +97,14 @@ In many systems, data is ingested close to when it was generated at its source. 
 - In this case, setting `record_timestamp` as the uniform range datetime partition key of `T`, while specifying the `OverrideCreationTime` property as `true` will have the cluster re-partition the data and organize the records 
 - And, if the table has an effective caching policy of 30 days, any records older than that period will not be cached.
 
-#### Data compression
+### Data compression
 
 Data partitioning results with similar values of the partition key ending up in the same data shards. In some cases, data in other columns behaves similarly, as values sent from the same device or tenant have similar characteristics, compared to those sent from others.
-As a result, in many cases the compression ratio of such columns, and not only the partition key, increases. Meaning - less storage is required to store the data, and a potential cost reduction is possible.
+As a result, in many cases the compression ratio of such columns, and not only the partition key, increases. Meaning - less storage is required to store the data, and a potential cost reduction is possible. In addition - the created indexes may be more efficient.
 
 As different data sets may have different characteristics - YMMV.
 
-## When not to use data partitioning
+## When *not* to use data partitioning
 
 Any other case which doesn't meet the criteria mentioned above will not benefit, and may be harmed by enabling data partitioning.
 
