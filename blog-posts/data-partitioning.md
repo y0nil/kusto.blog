@@ -26,6 +26,7 @@ In specific cases, it is possible and recommended to define a [Data partitioning
 - When a partitioning policy is defined on a table, extents participate in another background process *after* they're created (ingested), and *before* they are merged.
   - This process re-ingests the data from the source extents and creates *homogeneous* extents.
   - In these, all values in the column that is the table's partition key belong to the same partition.
+  - Extents that belong to different partitions do not get merged together.
 - Because extents are not merged before they are *homogeneous*, it is important to make sure the cluster's maximum [capacity](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/capacitypolicy){:target="_blank"} for partitioning and for merges are balanced, so that:
   - The rate of creating new extents isn't significantly higher than the rate of merging them.
   - The overall number of extent in the database/cluster doesn't keep growing significantly over time.
@@ -100,7 +101,8 @@ In many systems, data is ingested close to when it was generated at its source. 
 ### Data compression
 
 Data partitioning results with similar values of the partition key ending up in the same data shards. In some cases, data in other columns behaves similarly, as values sent from the same device or tenant have similar characteristics, compared to those sent from others.
-As a result, in many cases the compression ratio of such columns, and not only the partition key, increases. Meaning - less storage is required to store the data, and a potential cost reduction is possible. In addition - the created indexes may be more efficient.
+
+As a result, in many cases the compression ratio of such columns, and not only the partition key, improves. Meaning - less storage is required to store the data, and a potential cost reduction is achievable.
 
 As different data sets may have different characteristics - YMMV.
 
@@ -118,8 +120,8 @@ Specifically, **don't** use data partitioning when:
   | order by count_ desc
   ```
 - The cardinality of the chosen hash partition key is low.
-  - For example: Table `T` has a column `Severity` with only 5 unique values ("Verbose", "Info", "Warning", "Error", "Critical"), but you frequently filter on this column.
-- You have many outliers in your data, that will result with a large amount of extents.
+  - For example: Table `T` has a column `Severity` with only 5 unique values ("Verbose", "Info", "Warning", "Error", "Critical"), even if you frequently filter on this column.
+- You have many outliers in your data, that will result with a large amount of small extents.
   - For example: you defined a uniform range datetime partition key, with a range of 1 day, but there are many records with 'bad' datetime values in the column from the distant past/future (e.g. `0003-12-31` and `3020-07-11`).
 
 More importantly - make sure you:
