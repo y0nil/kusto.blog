@@ -9,6 +9,8 @@ title: Data partitioning in Kusto (Azure Data Explorer)
 
 # Data partitioning in Kusto (Azure Data Explorer)
 
+*Last modified: 12/31/2020*
+
 By default, tables in Kusto are partitioned according to the time at which data is ingested. In the majority of use cases, there is no need to change that, unlike in other technologies, in which data partitioning is necessary in many cases, to reach better performance.
 
 In specific cases, it is possible and recommended to define a [Data partitioning policy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/partitioningpolicy){:target="_blank"}, to reach improved performance at query time.
