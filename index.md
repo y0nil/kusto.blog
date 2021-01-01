@@ -32,7 +32,7 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 - **[Update policies for in-place ETL](blog-posts/update-policies.md){:target="_blank"}**
 
-- **[Filtering on `datetime` columns can save you time](blog-posts/datetime-columns.md){:target="_blank"}**
+- **[Filtering on datetime columns can save you time](blog-posts/datetime-columns.md){:target="_blank"}**
 
 - **[Specifying metadata at ingestion time](blog-posts/ingestion-time-metadata.md){:target="_blank"}**
 

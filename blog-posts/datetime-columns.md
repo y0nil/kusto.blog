@@ -1,7 +1,7 @@
 ---
-title: datetime columns
+title: DateTime columns
 ---
-# `datetime` columns in Kusto (Azure Data Explorer)
+# DateTime columns in Kusto (Azure Data Explorer)
 
 *Last modified: 11/08/2018*
 
