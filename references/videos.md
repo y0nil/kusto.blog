@@ -1,5 +1,6 @@
 ---
 title: Kusto (Azure Data Explorer) videos
+has_toc: false
 ---
 **[Go back home](../index.md)**
 

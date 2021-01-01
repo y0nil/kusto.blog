@@ -46,11 +46,11 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 ### **See it in action**
 
-Start off with a couple of [videos](references/videos.md){:target="_blank"}, and [customer stories](references/customer-stories.md){:target="_blank"}
+Start off with a couple of [videos](references/videos.md){:target="_blank"}, and [customer stories](references/customer-stories.md){:target="_blank"}.
 
 ### **Learn more**
 
-There's a lot to learn and read about. Find a helpful list of references [here](references/learn-more.md){:target="_blank"}
+There's a lot to learn and read about. Find a helpful list of references [here](references/learn-more.md){:target="_blank"}.
 
 ---
 

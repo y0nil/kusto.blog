@@ -1,5 +1,6 @@
 ---
 title: Kusto (Azure Data Explorer) customer stories
+has_toc: false
 ---
 **[Go back home](../index.md)**
 
