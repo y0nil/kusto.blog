@@ -1,11 +1,6 @@
 ---
 title: Just another Kusto hacker (JAKH)
 ---
-
-{% include  share.html %}
-
----
-
 # Just another Kusto hacker *(JAKH)*
 
 *Last modified: 11/08/2018*

@@ -1,11 +1,6 @@
 ---
 title: datetime columns
 ---
-
-{% include  share.html %}
-
----
-
 # `datetime` columns in Kusto (Azure Data Explorer)
 
 *Last modified: 11/08/2018*

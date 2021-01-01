@@ -2,11 +2,6 @@
 title: Learn more
 nav_order: 1
 ---
-
-{% include  share.html %}
-
----
-
 # Learn more about Kusto (Azure Data Explorer)
 
 ### **October 2020 updates**

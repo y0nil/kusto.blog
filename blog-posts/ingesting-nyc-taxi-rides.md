@@ -1,11 +1,6 @@
 ---
 title: Ingesting 2 billion NYC taxi rides
 ---
-
-{% include  share.html %}
-
----
-
 # Ingesting 2 billion new york city taxi rides into Kusto (Azure Data Explorer)
 
 *Last modified: 03/06/2019*

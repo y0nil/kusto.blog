@@ -1,11 +1,6 @@
 ---
 title: Analyzing Spotify streaming history
 ---
-
-{% include  share.html %}
-
----
-
 # Analyzing Spotify streaming history in Kusto (Azure Data Explorer)
 
 *Last modified: 01/19/2019*

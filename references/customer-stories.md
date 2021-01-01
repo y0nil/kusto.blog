@@ -2,11 +2,6 @@
 title: Customer stories
 nav_order: 3
 ---
-
-{% include  share.html %}
-
----
-
 # Kusto (Azure Data Explorer) customer stories
 
 *Last modified: 12/31/2020*

@@ -1,11 +1,6 @@
 ---
 title: Analyzing 2 billion NYC taxi rides
 ---
-
-{% include  share.html %}
-
----
-
 # Analyzing 2 billion New York city taxi rides in Kusto (Azure Data Explorer)
 
 *Last modified: 02/10/2019*

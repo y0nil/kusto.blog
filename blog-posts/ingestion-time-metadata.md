@@ -1,11 +1,6 @@
 ---
 title: Specifying metadata at ingestion time
 ---
-
-{% include  share.html %}
-
----
-
 # Specifying metadata at ingestion time in Kusto (Azure Data Explorer)
 
 *Last modified: 12/21/2018*

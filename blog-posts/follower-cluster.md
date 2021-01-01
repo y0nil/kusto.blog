@@ -1,11 +1,6 @@
 ---
 title: Follower clusters
 ---
-
-{% include  share.html %}
-
----
-
 # Follower clusters in Kusto (Azure Data Explorer)
 
 *Last modified: 12/30/2020*

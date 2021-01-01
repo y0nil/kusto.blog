@@ -1,11 +1,6 @@
 ---
 title: Analyzing Uber rides history
 ---
-
-{% include  share.html %}
-
----
-
 # Analyzing Uber rides history in Kusto (Azure Data Explorer)
 
 *Last modified: 02/09/2019*

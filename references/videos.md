@@ -2,11 +2,6 @@
 title: Videos
 nav_order: 2
 ---
-
-{% include  share.html %}
-
----
-
 # Kusto (Azure Data Explorer) videos
 
 *Last modified: 12/31/2020*

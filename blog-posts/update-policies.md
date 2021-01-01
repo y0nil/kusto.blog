@@ -1,11 +1,6 @@
 ---
 title: Update policies for in-place ETL
 ---
-
-{% include  share.html %}
-
----
-
 # Update policies for in-place ETL in Kusto (Azure Data Explorer)
 
 *Last modified: 11/08/2018*
