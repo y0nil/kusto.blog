@@ -1,5 +1,5 @@
 ---
-title: Analyzing 2 billion New York city taxi rides
+title: Analyzing 2 billion NYC taxi rides
 ---
 
 {% include  share.html %}

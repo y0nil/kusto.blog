@@ -1,5 +1,5 @@
 ---
-title: Ingesting 2 billion new york city taxi rides
+title: Ingesting 2 billion NYC taxi rides
 ---
 
 {% include  share.html %}
