@@ -1,7 +1,6 @@
 ---
 title: Analyzing Spotify streaming history
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -359,7 +358,5 @@ SpotifyStreamingHistory
 *(Got suggestions for more interesting queries? Let me know and I'll update the post based on your feedback)*
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

@@ -1,7 +1,6 @@
 ---
 title: Follower clusters
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -17,7 +16,5 @@ title: Follower clusters
 {:toc}
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

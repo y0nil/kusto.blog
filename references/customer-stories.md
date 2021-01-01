@@ -2,7 +2,6 @@
 title: Customer stories
 nav_order: 3
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -24,7 +23,5 @@ nav_order: 3
 - [NY fintech streamlines buy-side data analysis with Azure Data Explorer](https://customers.microsoft.com/en-us/story/825356-financial-fabric-banking-and-capital-markets-azure-powerbi-en-united-states){:target="_blank"}
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

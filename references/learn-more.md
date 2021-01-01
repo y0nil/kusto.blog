@@ -2,7 +2,6 @@
 title: Learn more
 nav_order: 1
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -45,7 +44,5 @@ nav_order: 1
 - [azure-data-explorer](https://stackoverflow.com/questions/tagged/azure-data-explorer){:target="_blank"}
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

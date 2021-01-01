@@ -1,7 +1,6 @@
 ---
 title: Ingesting 2 billion new york city taxi rides
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -356,7 +355,5 @@ data prepared, before ingesting it.
     * If you're not interested in enriching the original data set, you might as well ingest it directly from the source (like I did for the [FHV trips](#ingesting-05-billion-for-hire-vehicle-trips)).
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

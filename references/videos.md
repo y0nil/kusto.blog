@@ -2,7 +2,6 @@
 title: Videos
 nav_order: 2
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -28,7 +27,5 @@ nav_order: 2
 - [Uri Barash](https://www.linkedin.com/in/uri-barash-7820594/){:target="_blank"}'s session - [watch on YouTube](https://youtu.be/chVFAGX8IYQ){:target="_blank"}
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

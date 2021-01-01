@@ -1,7 +1,6 @@
 ---
 title: Data partitioning
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -131,7 +130,5 @@ More importantly - make sure you:
 - Monitor & measure the impact of the policies you set on the cluster.
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

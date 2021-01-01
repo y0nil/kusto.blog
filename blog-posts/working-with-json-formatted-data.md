@@ -1,7 +1,6 @@
 ---
 title: Working with JSON-formatted data
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -17,7 +16,5 @@ title: Working with JSON-formatted data
 {:toc}
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

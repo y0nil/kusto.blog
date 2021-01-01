@@ -1,7 +1,6 @@
 ---
 title: Just another Kusto hacker (JAKH)
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -775,7 +774,5 @@ print "try"
 ```
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

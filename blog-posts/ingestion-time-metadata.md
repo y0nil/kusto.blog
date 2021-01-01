@@ -1,7 +1,6 @@
 ---
 title: Specifying metadata at ingestion time
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -122,7 +121,5 @@ an ingestion mapping.
 enable you to enrich your records with both the name of the file that included the record, and the line number of that record in the source file.
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

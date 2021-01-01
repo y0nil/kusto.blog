@@ -1,7 +1,6 @@
 ---
 title: Analyzing 2 billion New York city taxi rides
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -407,7 +406,5 @@ Trips
 *(Got suggestions for more interesting queries? Let me know and I'll update the post based on your feedback)*
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

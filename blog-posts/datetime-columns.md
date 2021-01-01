@@ -1,7 +1,6 @@
 ---
 title: datetime columns
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -60,7 +59,5 @@ The same is true if you want to query historical data, e.g. a specific week's wo
         
     
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}

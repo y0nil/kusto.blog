@@ -1,7 +1,6 @@
 ---
 title: Analyzing Uber rides history
 ---
-**[Go back home](../index.md)**
 
 {% include  share.html %}
 
@@ -357,7 +356,5 @@ UberRides
 *(Got suggestions for more interesting queries? Let me know and I'll update the post based on your feedback)*
 
 ---
-
-**[Go back home](../index.md)**
 
 {% include  share.html %}
