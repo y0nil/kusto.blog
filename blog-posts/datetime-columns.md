@@ -1,5 +1,5 @@
 ---
-title: DateTime column
+title: datetime columns
 ---
 **[Go back home](../index.md)**
 
@@ -7,7 +7,7 @@ title: DateTime column
 
 ---
 
-# datetime columns in Kusto (Azure Data Explorer)
+# `datetime` columns in Kusto (Azure Data Explorer)
 
 *Last modified: 11/08/2018*
 

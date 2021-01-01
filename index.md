@@ -22,17 +22,17 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 - **[Analyzing Spotify streaming history](blog-posts/analyzing-spotify-streaming-history.md){:target="_blank"}**
 
-- **[Analyzing 2 Billion New York City Taxi rides](blog-posts/analyzing-nyc-taxi-rides.md){:target="_blank"}**
+- **[Analyzing 2 billion New York city taxi rides](blog-posts/analyzing-nyc-taxi-rides.md){:target="_blank"}**
 
 ### **Data Ingestion & Management**
 
 - **[Data partitioning](blog-posts/data-partitioning.md){:target="_blank"}**
 
-- **[Ingesting 2 Billion New York City Taxi rides into](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
+- **[Ingesting 2 billion New York city taxi rides into](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
 
 - **[Update policies for in-place ETL](blog-posts/update-policies.md){:target="_blank"}**
 
-- **[Why filtering on datetime columns can save you time](blog-posts/datetime-columns.md){:target="_blank"}**
+- **[Filtering on `datetime` columns can save you time](blog-posts/datetime-columns.md){:target="_blank"}**
 
 - **[Specifying metadata at ingestion time](blog-posts/ingestion-time-metadata.md){:target="_blank"}**
 

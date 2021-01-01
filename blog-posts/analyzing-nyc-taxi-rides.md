@@ -1,5 +1,5 @@
 ---
-title: Analyzing 2 Billion New York City Taxi rides
+title: Analyzing 2 billion New York city taxi rides
 ---
 **[Go back home](../index.md)**
 
@@ -7,7 +7,7 @@ title: Analyzing 2 Billion New York City Taxi rides
 
 ---
 
-# Analyzing 2 Billion New York City Taxi rides in Kusto (Azure Data Explorer)
+# Analyzing 2 billion New York city taxi rides in Kusto (Azure Data Explorer)
 
 *Last modified: 02/10/2019*
 

@@ -1,5 +1,5 @@
 ---
-title: Ingesting 2 Billion New York City Taxi rides
+title: Ingesting 2 billion new york city taxi rides
 ---
 **[Go back home](../index.md)**
 
@@ -7,7 +7,7 @@ title: Ingesting 2 Billion New York City Taxi rides
 
 ---
 
-# Ingesting 2 Billion New York City Taxi rides into Kusto (Azure Data Explorer)
+# Ingesting 2 billion new york city taxi rides into Kusto (Azure Data Explorer)
 
 *Last modified: 03/06/2019*
 
