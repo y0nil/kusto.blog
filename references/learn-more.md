@@ -1,5 +1,6 @@
 ---
 title: Learn more
+nav_order: 1
 ---
 **[Go back home](../index.md)**
 

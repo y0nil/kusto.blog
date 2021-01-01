@@ -1,5 +1,6 @@
 ---
 title: Customer stories
+nav_order: 3
 ---
 **[Go back home](../index.md)**
 

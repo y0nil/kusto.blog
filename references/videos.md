@@ -1,5 +1,6 @@
 ---
 title: Videos
+nav_order: 2
 ---
 **[Go back home](../index.md)**
 
