@@ -1,5 +1,5 @@
 ---
-title: Ingesting 2 Billion New York City Taxi rides into Kusto (Azure Data Explorer)
+title: Ingesting 2 Billion New York City Taxi rides
 ---
 **[Go back home](../index.md)**
 

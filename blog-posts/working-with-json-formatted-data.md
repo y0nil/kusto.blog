@@ -1,5 +1,5 @@
 ---
-title: Working with JSON-formatted data in Kusto (Azure Data Explorer)
+title: Working with JSON-formatted data
 ---
 **[Go back home](../index.md)**
 

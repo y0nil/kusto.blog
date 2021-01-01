@@ -1,5 +1,5 @@
 ---
-title: Advanced data management in Kusto (Azure Data Explorer)
+title: Advanced data management
 ---
 **[Go back home](../index.md)**
 

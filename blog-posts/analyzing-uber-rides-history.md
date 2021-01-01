@@ -1,5 +1,5 @@
 ---
-title: Analyzing Uber rides history in Kusto (Azure Data Explorer)
+title: Analyzing Uber rides history
 ---
 **[Go back home](../index.md)**
 

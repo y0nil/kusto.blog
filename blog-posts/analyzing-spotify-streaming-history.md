@@ -1,5 +1,5 @@
 ---
-title: Analyzing Spotify streaming history in Kusto (Azure Data Explorer)
+title: Analyzing Spotify streaming history
 ---
 **[Go back home](../index.md)**
 

@@ -1,5 +1,5 @@
 ---
-title: Update policies for in-place ETL in Kusto (Azure Data Explorer)
+title: Update policies for in-place ETL
 ---
 **[Go back home](../index.md)**
 

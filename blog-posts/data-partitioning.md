@@ -1,5 +1,5 @@
 ---
-title: Data partitioning in Kusto (Azure Data Explorer)
+title: Data partitioning
 ---
 **[Go back home](../index.md)**
 

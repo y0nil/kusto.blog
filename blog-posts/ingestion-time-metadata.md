@@ -1,5 +1,5 @@
 ---
-title: Specifying metadata at ingestion time in Kusto (Azure Data Explorer)
+title: Specifying metadata at ingestion time
 ---
 **[Go back home](../index.md)**
 

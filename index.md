@@ -18,25 +18,25 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 - **[Just another Kusto hacker *(JAKH)*](blog-posts/jakh.md){:target="_blank"}**
 
-- **[Analyzing Uber rides history in Kusto (Azure Data Explorer)](blog-posts/analyzing-uber-rides-history.md){:target="_blank"}**
+- **[Analyzing Uber rides history](blog-posts/analyzing-uber-rides-history.md){:target="_blank"}**
 
-- **[Analyzing Spotify streaming history in Kusto (Azure Data Explorer)](blog-posts/analyzing-spotify-streaming-history.md){:target="_blank"}**
+- **[Analyzing Spotify streaming history](blog-posts/analyzing-spotify-streaming-history.md){:target="_blank"}**
 
-- **[Analyzing 2 Billion New York City Taxi rides in Kusto (Azure Data Explorer)](blog-posts/analyzing-nyc-taxi-rides.md){:target="_blank"}**
+- **[Analyzing 2 Billion New York City Taxi rides](blog-posts/analyzing-nyc-taxi-rides.md){:target="_blank"}**
 
 ### **Data Ingestion & Management**
 
-- **[Data partitioning in Kusto (Azure Data Explorer)](blog-posts/data-partitioning.md){:target="_blank"}**
+- **[Data partitioning](blog-posts/data-partitioning.md){:target="_blank"}**
 
-- **[Ingesting 2 Billion New York City Taxi rides into Kusto (Azure Data Explorer)](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
+- **[Ingesting 2 Billion New York City Taxi rides into](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
 
-- **[Update policies for in-place ETL in Kusto (Azure Data Explorer)](blog-posts/update-policies.md){:target="_blank"}**
+- **[Update policies for in-place ETL](blog-posts/update-policies.md){:target="_blank"}**
 
 - **[Why filtering on datetime columns can save you time](blog-posts/datetime-columns.md){:target="_blank"}**
 
 - **[Specifying metadata at ingestion time](blog-posts/ingestion-time-metadata.md){:target="_blank"}**
 
-- **[Advanced data management in Kusto (Azure Data Explorer)](blog-posts/advanced-data-management.md){:target="_blank"}**
+- **[Advanced data management](blog-posts/advanced-data-management.md){:target="_blank"}**
   - [Committing multiple bulks of data in a single transaction](blog-posts/advanced-data-management.md#committing-multiple-bulks-of-data-in-a-single-transaction){:target="_blank"}
   - [Back-filling data](blog-posts/advanced-data-management.md#back-filling-data){:target="_blank"}
 

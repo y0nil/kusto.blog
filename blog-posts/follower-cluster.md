@@ -1,5 +1,5 @@
 ---
-title: Follower clusters in Kusto (Azure Data Explorer)
+title: Follower clusters
 ---
 **[Go back home](../index.md)**
 

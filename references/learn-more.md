@@ -1,6 +1,5 @@
 ---
-title: Learn more about Kusto (Azure Data Explorer)
-has_toc: false
+title: Learn more
 ---
 **[Go back home](../index.md)**
 
