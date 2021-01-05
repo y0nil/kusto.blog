@@ -55,6 +55,7 @@ Homogeneous extents include metadata on their partition values, that allows Kust
 - The filter on `TenantId` is highly efficient, as it allows Kusto's query planner to filter out any extents that belongs to partitions that aren't partition number `10`.
   - Assuming equal-distribution of data across tenants in `T`, that means we're left with 1/256 (~0.39%) of the extents, even before evaluating the [datetime pre-filter](datetime-columns.md) and leveraging the default index on `TenantId`.
 - When the amount of concurrent queries is higher (dozens or more), the benefit increases significantly - as each such query consumes less resources.
+- In this sample use case, it's appropriate to set the partition assignment mode for the hash partition key to `Uniform`.
 
 ### Joins / aggregations
 
@@ -81,7 +82,7 @@ Choosing the `Default` mode makes sense when the cardinality of the hash partiti
 
 ### Backfill or unordered ingestion
 
-In many systems, data is ingested close to when it was generated at its source. More than that - data is ingested in-order, e.g. data from 10 minutes ago is ingested after data from 15 minutes ago. There are some cases, however, in which the patterns are different.
+In many systems, data is ingested close to when it was generated at its source. More than that - data is ingested in-order, e.g. data from 10 minutes ago is ingested after data from 15 minutes ago. There are some cases, however, in which the patterns are different - these are the ones referred to in this section.
 
 #### Example
 
@@ -109,7 +110,7 @@ Any other case which doesn't meet the criteria mentioned above will not benefit,
 Specifically, **don't** use data partitioning when:
 - You don't frequently use equality filters or join/aggregate on the chosen hash partition key.
 - Your data is unevenly distributed across the partitions defined by your policy, and you want each partition to be assigned to a single node.
-  - An easy way to check this is by running a query such as the following, and making sure the values under the `count_` column are ~even:
+  - If data is already ingested into a non-partitioned table in Kusto, an easy way to check this is by running a query such as the following, and making sure the values under the `count_` column are ~even:
   ```
   T datascope=hotcache
   | summarize count() by p = hash(my_column, 256)
