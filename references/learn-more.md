@@ -24,6 +24,10 @@ nav_order: 1
 - [Azure Data Explorer: Quickstarts and tutorials](https://docs.microsoft.com/en-us/azure/data-explorer){:target="_blank"}
 - [Azure Data Explorer: Reference material](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/){:target="_blank"}
 
+### **Official product blog**
+
+- [Azure Data Explorer @ Microsoft Tech Community](https://techcommunity.microsoft.com/t5/azure-data-explorer/bg-p/AzureDataExplorer){:target="_blank"}
+
 ### **Highlights from Kusto (Azure Data Explorer) documentation**
 
 - [Creating a cluster and databases](https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-portal){:target="_blank"}
