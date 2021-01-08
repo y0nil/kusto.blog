@@ -56,7 +56,7 @@ While the database is followed in read-only mode, it is possible for the followe
 
 It is possible for a database attached as a follower to define that only a subset of the tables or external tables will be available on the follower.
 
-This is useful for controlling both who has access to which dataset on which resource, as well as controlling the costs.
+This is useful for controlling who has access to which dataset on which resource, as well as controlling the costs.
 
 The definition can be done using lists of tables to exclude and lists of tables to include. Wildcards (`*`) are supported as well.
 
