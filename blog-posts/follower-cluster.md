@@ -84,8 +84,6 @@ This is useful for controlling who has access to which dataset on which resource
 
 The control commands for managing this setup can be found [here](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/cluster-follower#add-follower-database-principals){:target="_blank"}.
 
-[here](){:target="_blank"}
-
 ### Caching policy
 
 It is possible for a database attached as a follower to define a set of caching policies different than that defined on the leader. This override can be defined at the database-level, and/or at the table-level.
