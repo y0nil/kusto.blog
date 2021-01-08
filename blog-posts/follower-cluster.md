@@ -23,22 +23,22 @@ In Kusto, one can [attach a database](https://docs.microsoft.com/en-us/azure/dat
 - A follower cluster periodically synchronizes changes from its leader(s). As this is done periodically, there can be a lag of a few seconds to a few minutes on the follower.
   - The length of the lag depends on the amount of metadata changes that were made in between sequential synchronizations.
 
-### Benefits of a follower cluster
+## Benefits of a follower cluster
 
-#### Workload isolation
+### Workload isolation
 
 As the follower is a completely different resource, and its compute is isolated from its leader's - Any requests running on a leader do not affect the resources utilization on the follower, and vice versa.
 
 This allows having different workloads run across different resources, without one impacting the performance of the other, but without having to ingest the same data more than once.
 
-*Examples:*
+#### Examples
 
 - **Dashboards & alerts vs. long term analytics:** A leader cluster can serve frequent queries that are used by mission-critical tools and applications that look at the recent 'head' of the data (e.g. the last 24 hours), while a follower cluster can have a longer caching period (e.g. the last 90 days) for the same data set, and run heavier computations over larger volumes of data. Each cluster may have a different size, that fits its business requirements.
 - **Testing:** A follower cluster in a staging environment can run performance or A/B tests against the same data that is available in the Production environment, without affecting the leader.
 - **Cost reduction:** A team of analysts runs ad-hoc queries occasionally against a data set, during work hours. They can spin up their own follower cluster, sized according to their compute & caching requirements. Once it's no longer required, it can be suspended or deleted.
 - **Cost management:** Two or more organizations can have a separate bill for their resources. Each resource can be sized according to each organization's needs.
 
-#### Data sharing
+### Data sharing
 
 Providing partners and customers with access to your data, or a specific subset of it, is possible using [Azure data share](https://docs.microsoft.com/en-us/azure/data-explorer/data-share){:target="_blank"}. The data is ingested once, and there's no need to export or import it. The underlying implementation uses the mechanics described in this post.
 
