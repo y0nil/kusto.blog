@@ -24,7 +24,9 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 - **[Analyzing 2 billion New York city taxi rides](blog-posts/analyzing-nyc-taxi-rides.md){:target="_blank"}**
 
-### **Data Ingestion & Management**
+### **Data management**
+
+- **[Follower clusters](blog-posts/follower-cluster.md){:target="_blank"}**
 
 - **[Data partitioning](blog-posts/data-partitioning.md){:target="_blank"}**
 

@@ -111,6 +111,29 @@ It is possible to configure the database on the follower with `auto-prefetch` se
 
 The control command for managing this setup can be found [here](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/cluster-follower#alter-follower-database-prefetch-extents){:target="_blank"}
 
+Another *advanced technique* would be to define a [stored function](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/schema-entities/stored-functions){:target="_blank"}} in the database, that unions the table on the leader and on the follower, such that the latest data is taken from the leader and the rest - from the follower. This function should be run on the follower.
+- This is usually **not** required.
+- For example:
+    
+    ```
+    .create function MyTable(_starttime:datetime, _endtime:datetime)
+    {
+        let _t = min_of(ago(5min), _endtime);
+        union
+        (
+            // Data from up to 5 minutes ago is queried from the current (follower) cluster
+            MyTable
+            | where Timestamp between(_starttime .. _t)        
+        ),
+        (
+            // Data from the last 5 minutes is queried from the other (leader) cluster
+            cluster('leader.westus.kusto.windows.net').database('MyDatabase').table('MyTable')
+            | where _endtime > _t
+            | where current_cluster_endpoint() != 'leader.westus.kusto.windows.net' 
+            | where Timestamp between(_t .. _endtime)
+        }
+    ```
+
 > [!NOTE]
 > It is generally recommended that workloads that require access to the most recently ingested data will run against the leader, whereas workloads that do not have that requirement, or can withstand some delay for this specific case, will run on a follower.
 
