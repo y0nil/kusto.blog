@@ -139,8 +139,7 @@ Another *advanced technique* would be to define a [stored function](https://docs
         }
     ```
 
-> [!NOTE]
-> It is generally recommended that workloads that require access to the most recently ingested data will run against the leader, whereas workloads that do not have that requirement, or can withstand some delay for this specific case, will run on a follower.
+**Note:** It is generally recommended that workloads that require access to the most recently ingested data will run against the leader, whereas workloads that do not have that requirement, or can withstand some delay for this specific case, will run on a follower.
 
 ---
 
