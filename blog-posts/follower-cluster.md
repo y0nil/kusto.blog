@@ -59,7 +59,7 @@ It is possible for a database attached as a follower to define that only a subse
 
 The definition can be done using lists of tables to exclude and lists of tables to include. Wildcards (`*`) are supported as well.
 
-*Example:*
+#### Examples
 
 Database `DB1` on cluster `C1` has the following 6 tables: `tableA`, `tableA2`, `tableA_private`, `tableB`, `tableC`, `tableD`.
 
