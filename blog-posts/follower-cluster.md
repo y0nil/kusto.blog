@@ -46,7 +46,6 @@ Providing partners and customers with access to your data, or a specific subset 
   <img title="Follower clusters in Kusto (Azure Data Explorer)" src="https://docs.microsoft.com/en-us/azure/data-explorer/media/data-share/adx-datashare-image.png">
 </p>
 
-
 ## Policy overrides
 
 While the database is followed in read-only mode, it is possible for the follower to override certain properties of its local copy of the database - in order to have better control over security and cost.
@@ -56,6 +55,8 @@ While the database is followed in read-only mode, it is possible for the followe
 *This functionality will be announced soon, and is currently available for select customers in preview mode (those who are interested can open a support ticket via the Azure portal for setting it up).*
 
 It is possible for a database attached as a follower to define that only a subset of the tables or external tables will be available on the follower.
+
+This is useful for controlling both who has access to which dataset on which resource, as well as controlling the costs.
 
 The definition can be done using lists of tables to exclude and lists of tables to include. Wildcards (`*`) are supported as well.
 
