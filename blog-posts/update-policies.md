@@ -17,6 +17,10 @@ efficient manner. In other cases, you may want to enrich the data as it gets ing
 In this post, I will demonstrate how you can leverage an [update policy](https://docs.microsoft.com/en-us/azure/kusto/management/updatepolicy){:target="_blank"}, to take data which is 'structured' in a non-standard format, and restructure it at ingestion time, so that your queries will end up being much more efficient - You will pay a slight (usually negligible) overhead for manipulating the data at ingestion time, however you will gain a
 lot in the efficiency of all the queries which will run against your data set.
 
+<p align="center">
+  <img title="Update policies for in-place ETL in Kusto (Azure Data Explorer)" src="https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/images/updatepolicy/update-policy-overview.png">
+</p>
+
 * TOC
 {:toc}
 
