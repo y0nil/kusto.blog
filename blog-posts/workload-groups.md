@@ -79,7 +79,7 @@ Imagine a scenario where you have 3 different customer teams running their queri
 
 By creating 3 different workload groups, one for each customer team, you can place different sets of limits on each, and monitor the resource usage for each.
 
-#### Monitoring resources utilization
+**Monitoring resources utilization**
 
 You're interested in getting a periodic report for how much resources each customer team is consuming, so that you can charge them accordingly.
 [`.show commands-and-queries`](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/commands-and-queries){:target="_blank"}
