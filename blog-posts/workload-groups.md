@@ -14,7 +14,7 @@ A Kusto cluster comes pre-configured with 2 [built-in workload groups](#built-in
 workload groups, as well as edit the policies of the `default` workload group.
 
 <p align="center">
-  <img title="Workload groups in Kusto (Azure Data Explorer)" src="../resources/images/workload-groups.png">
+  <img title="Workload groups in Kusto (Azure Data Explorer)" src="../resources/images/workload-groups.png" width="1381" height="758">
 </p>
 
 * TOC
