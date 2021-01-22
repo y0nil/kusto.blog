@@ -6,16 +6,16 @@ nav_order: 3
 
 *Last modified: 12/31/2020*
 
-- [Better forecasting, safer driving with Bosch](https://customers.microsoft.com/en-us/story/816933-bosch-automotive-azure-germany){:target="_blank"}
-- [Data-driven Dodo Pizza raises performance with Azure Data Explorer](https://customers.microsoft.com/en-us/story/851838-dodo-pizza-consumer-goods-azure-en-russia){:target="_blank"}
-- [Global consultancy Milliman powers award - winning Arius insurance reserving software using Azure Data Explorer](https://customers.microsoft.com/en-us/story/842088-milliman-insurance-azure-en-united-states){:target="_blank"}
-- [Global software company Episerver uses Azure Data Explorer to gain enhanced consumer insight](https://customers.microsoft.com/en-us/story/817285-episerver-professional-services-azure-sweden){:target="_blank"}
-- [Growing an innovative energy partnership across Australia](https://customers.microsoft.com/en-us/story/847171-agl-energy-azure-en-australia){:target="_blank"}
-- [How Azure Data Explorer Helped Us Make Sense of 1M Log Lines per Second](https://engineering.taboola.com/azure-data-explorer-helped-us-make-sense-1m-log-lines-per-second/){:target="_blank"}
-- [How Azure Data Explorer Was Able to Accelerate Namogoo’s Classification Processes 170X Faster](https://www.namogoo.com/blog/our-technology/how-azure-data-explorer-accelerates-namogoos-classification-processes-170x-faster/){:target="_blank"}
-- [MFTBC's Truckonnect uses Azure Data Explorer to improve the customer experience and lower costs](https://customers.microsoft.com/en-us/story/850967-mitsubishi-fuso-automotive-azure){:target="_blank"}
-- [Mobile user acquisition PaaS converts terabytes of real-time data into user engagement](https://customers.microsoft.com/en-us/story/816542-zoomd-technologies-azure-professional-services-israel-en){:target="_blank"}
-- [NY fintech streamlines buy-side data analysis with Azure Data Explorer](https://customers.microsoft.com/en-us/story/825356-financial-fabric-banking-and-capital-markets-azure-powerbi-en-united-states){:target="_blank"}
+- [Better forecasting, safer driving with **Bosch**](https://customers.microsoft.com/en-us/story/816933-bosch-automotive-azure-germany){:target="_blank"}
+- [Data-driven **Dodo Pizza** raises performance with Azure Data Explorer](https://customers.microsoft.com/en-us/story/851838-dodo-pizza-consumer-goods-azure-en-russia){:target="_blank"}
+- [Global consultancy **Milliman** powers award - winning Arius insurance reserving software using Azure Data Explorer](https://customers.microsoft.com/en-us/story/842088-milliman-insurance-azure-en-united-states){:target="_blank"}
+- [Global software company **Episerver** uses Azure Data Explorer to gain enhanced consumer insight](https://customers.microsoft.com/en-us/story/817285-episerver-professional-services-azure-sweden){:target="_blank"}
+- [Growing an innovative energy partnership across Australia (**AGL**)](https://customers.microsoft.com/en-us/story/847171-agl-energy-azure-en-australia){:target="_blank"}
+- [How Azure Data Explorer Helped Us Make Sense of 1M Log Lines per Second (**Taboola**)](https://engineering.taboola.com/azure-data-explorer-helped-us-make-sense-1m-log-lines-per-second/){:target="_blank"}
+- [How Azure Data Explorer Was Able to Accelerate **Namogoo**'s Classification Processes 170X Faster](https://www.namogoo.com/blog/our-technology/how-azure-data-explorer-accelerates-namogoos-classification-processes-170x-faster/){:target="_blank"}
+- [**Mitsubishi** Fuso Truck and Bus Corporation's Truckonnect uses Azure Data Explorer to improve the customer experience and lower costs](https://customers.microsoft.com/en-us/story/850967-mitsubishi-fuso-automotive-azure){:target="_blank"}
+- [Mobile user acquisition PaaS **Zoomd** converts terabytes of real-time data into user engagement](https://customers.microsoft.com/en-us/story/816542-zoomd-technologies-azure-professional-services-israel-en){:target="_blank"}
+- [NY fintech **Financial Fabric** streamlines buy-side data analysis with Azure Data Explorer](https://customers.microsoft.com/en-us/story/825356-financial-fabric-banking-and-capital-markets-azure-powerbi-en-united-states){:target="_blank"}
 
 ---
 
