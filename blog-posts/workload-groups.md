@@ -37,7 +37,7 @@ lets you play it safe in these types of cases, by placing a ceiling on the amoun
   * An upper bound for the amount of memory that can be used on a single node for a specific query.
 * **Execution time**: ([source](https://docs.microsoft.com/azure/data-explorer/kusto/concepts/querylimits#limit-execution-timeout){:target="_blank"})
   * An upper bound for the duration (wall clock time) the request is allowed to run on the server side.
-* **CPU resource usage**: ([source](https://docs.microsoft.com/azure/data-explorer/kusto/concepts/querylimits#limit-on-query-cpu-resource-usage)]{:target="_blank"})
+* **CPU resource usage**: ([source](https://docs.microsoft.com/azure/data-explorer/kusto/concepts/querylimits#limit-on-query-cpu-resource-usage){:target="_blank"})
   * Kusto lets you run queries and use as much CPU resources as the cluster has. By default, it attempts to do a fair round-robin between queries if more than one is running.
     * This method yields the best performance for ad-hoc queries.
   * At other times, you may want to limit the CPU resources used for a particular query.
