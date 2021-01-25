@@ -1,6 +1,7 @@
 remote_theme: pmarsceill/just-the-docs
 markdown: kramdown
 title: kusto.blog
+subtitle: Learn more about Kusto (Azure Data Explorer)
 author: yonileibowitz
 logo: "/resources/images/adx-logo.png"
 search_enabled: true
