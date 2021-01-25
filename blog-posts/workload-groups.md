@@ -3,7 +3,7 @@ title: Workload groups
 ---
 # Workload groups in Kusto (Azure Data Explorer)
 
-*Last modified: 01/22/2021*
+*Last modified: 01/25/2021*
 
 [Workload groups (preview)](https://docs.microsoft.com/azure/data-explorer/kusto/management/workload-groups){:target="_blank"} allow you to group together sets of requests
 (commands and/or queries) that have similar characteristics, and apply policies to control per-request limits and request rate limits for each of these groups.
@@ -28,7 +28,11 @@ You may have experienced the problem of a user running a report for a very large
 These kinds of runaway queries may cause a few performance problems, and you may want to have predefined limits to protect against them.
 
 A workload group's [request limit policy](https://docs.microsoft.com/azure/data-explorer/kusto/management/request-limit-policy){:target="_blank"}
-lets you play it safe in these types of cases, by placing a ceiling on the amount of resources and/or the parallelism of the query's execution, including:
+lets you play it safe in these types of cases, by placing a ceiling on the amount of resources and/or the parallelism of the query's execution.
+- This can be thought of as a means for *de-prioritizing* certain workloads, while keeping others running in the most optimized manner (the default).
+
+Properties included in the policy allow controlling limits on:
+
 * **Result set size**: ([source](https://docs.microsoft.com/azure/data-explorer/kusto/concepts/querylimits#limit-on-result-set-size-result-truncation){:target="_blank"})
   * Upper bounds for the number of records and the overall data size returned by the service to the client.
 * **Amount of memory per iterator**: ([source](https://docs.microsoft.com/azure/data-explorer/kusto/concepts/querylimits#limit-on-memory-per-iterator){:target="_blank"})
@@ -46,6 +50,9 @@ lets you play it safe in these types of cases, by placing a ceiling on the amoun
     distributed sub-query operations.
 
 For requests coming from applications you trust more than others, you can create a dedicated workload group with more relaxed limits.
+
+**Note**: Control commands that include internal queries (such as `.export`, `.set-or-append`) also adhere to the limits in the policy, as long as they run in the context of a
+*non*-default workload group. For backwards compatibility, the policy of the `default` workload groups doesn't limit these internal queries.
 
 ### Controlling rate of requests
 
@@ -89,6 +96,8 @@ You're interested in getting a periodic report for how much resources each custo
 [`.show commands-and-queries`](https://docs.microsoft.com/azure/data-explorer/kusto/management/commands-and-queries){:target="_blank"}
 includes a `WorkloadGroup` column in its output, which allows you to aggregate statistics by it, and get a better understanding of how much resources each customer team is consuming over time.
 
+**Note**: *Complete* isolation between workloads can be achieved by setting up a [follower cluster](follower-cluster.md){:target="_blank"}
+
 ## Built-in workload groups
 
 ### The `default` workload group
@@ -105,7 +114,8 @@ You can also change the policies that are defined for this workload group.
 Requests that are run by the service against itself are classified into the `internal` group.
 
 Among others, this includes requests that are run as part of [queued ingestion](https://docs.microsoft.com/azure/data-explorer/kusto/api/netfx/about-kusto-ingest#queued-ingestion){:target="_blank"},
-requests that are run as part of internal data management and data grooming (such as [data partitioning](data-partitioning.md){:target="_blank"}).
+requests that are run as part of internal data management and data grooming (such as [data partitioning](data-partitioning.md){:target="_blank"}), queries run as part of
+[update policies](update-policies.md){:target="_blank"}, etc.
 
 You can't change the classification criteria for this workload group.
 
