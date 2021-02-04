@@ -1,5 +1,4 @@
 # kusto.blog
 
-This repository includes the source for the **kusto.blog** @ https://aka.ms/kusto.blog.
+The posts in this blog include examples and practices which combine the rich query and data management capabilities of **Kusto** (*Azure Data Explorer*). They will provide you with real-life best practices and methodologies, which have all been repeatedly proven in large-scale production environments, and will help you make sure you make the most out of your Kusto cluster.
 
-This blog includes general info and references to **Azure Data Explorer (Kusto)** videos & documentation, as well as posts meant to assist users with querying their data and managing it, in an efficient and delightful manner.
