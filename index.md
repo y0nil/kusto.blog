@@ -34,7 +34,7 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 - **[Ingesting 2 billion New York city taxi rides into](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
 
-- **[Update policies for in-place ETL](blog-posts/update-policies.md){:target="_blank"}**
+- **[Update policies for ELT](blog-posts/update-policies.md){:target="_blank"}**
 
 - **[Filtering on datetime columns can save you time](blog-posts/datetime-columns.md){:target="_blank"}**
 

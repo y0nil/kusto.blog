@@ -1,7 +1,7 @@
 ---
-title: Update policies for in-place ETL
+title: Update policies ELT
 ---
-# Update policies for in-place ETL in Kusto (Azure Data Explorer)
+# Update policies for ELT in Kusto (Azure Data Explorer)
 
 *Last modified: 11/08/2018*
 
