@@ -5,7 +5,7 @@ title: Workload groups
 
 *Last modified: 01/25/2021*
 
-[Workload groups (preview)](https://docs.microsoft.com/azure/data-explorer/kusto/management/workload-groups){:target="_blank"} allow you to group together sets of requests
+[Workload groups](https://docs.microsoft.com/azure/data-explorer/kusto/management/workload-groups){:target="_blank"} allow you to group together sets of requests
 (commands and/or queries) that have similar characteristics, and apply policies to control per-request limits and request rate limits for each of these groups.
 
 Classification of requests is done according to custom logic you can define using the Kusto query language.
