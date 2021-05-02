@@ -52,8 +52,6 @@ While the database is followed in read-only mode, it is possible for the followe
 
 ### Selecting specific tables, external tables & materialized views
 
-*This functionality will be announced soon, and is currently available for select customers in preview mode (those who are interested can open a support ticket via the Azure portal for setting it up).*
-
 It is possible for a database attached as a follower to define that only a subset of the tables, external tables and/or materialized views will be available on the follower.
 
 This is useful for controlling who has access to which dataset on which resource, as well as controlling the costs.
