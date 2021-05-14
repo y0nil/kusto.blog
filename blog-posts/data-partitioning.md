@@ -142,7 +142,7 @@ partitioning of newly-ingested data in other tables in the database.
 
 It is possible to re-partition old data, however if you do choose to partition historical data, consider doing so gradually - i.e. set the `EffectiveDateTime` to a previous
 datetime in steps of up to a few days each time you alter the policy, while [monitoring](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/partitioningpolicy#monitor-partitioning){:target="_blank"}
-the health of the process before progressing on to the next step.
+the health of the process before moving on to the next step.
 
 ***4. I'm importing a large data set stored in a different database technology, where it had a partitioning policy defined. Should I use the same partition keys in Kusto?***
 
