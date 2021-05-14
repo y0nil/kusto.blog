@@ -170,6 +170,9 @@ very wide tables (100s of columns).
 In such cases, you can set lower limits for the following properties in the data partitioning policy: `MaxRowCountPerOperation`, `MaxOriginalSizePerOperation`
 ([documentation](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/partitioningpolicy#additional-properties){:target="_blank"}).
 
+Furthermore - for a hash partition key, decreasing the `MaxPartitionCount` could help reduce the overhead of the partitioning process, though at some cost to the benefits at query runtime.
+The same goes for the range of a uniform range datetime partition key.
+
 ---
 
 {% include  share.html %}
