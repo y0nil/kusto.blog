@@ -28,6 +28,8 @@ In specific cases, it is possible and recommended to define a [Data partitioning
   - The overall number of extent in the database/cluster doesn't keep growing significantly over time.
 - Because the partitioning process requires reading and re-ingesting the data again, the process is expected to have a continuous overhead on the cluster's resources utilization.
 - In certain cases, this means that increasing [the size of the cluster](https://docs.microsoft.com/en-us/azure/data-explorer/manage-cluster-choose-sku){:target="_blank"} would be required.
+- The partitioning process prioritizes the table with a data partitioning policy that has the largest amount of non-partitioned records.
+  - It is possible that partitioning data in one very large table may delay partitioning data in other, smaller tables.
 
 ## When to use data partitioning
 
