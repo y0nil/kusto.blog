@@ -127,15 +127,15 @@ More importantly - make sure you:
 
 ## Frequently asked questions
 
-> 1. The vast majority of my queries look at data that was ingested in the last 30 minutes or less. Should I define a partitioning policy on my table?
+#### 1. The vast majority of my queries look at data that was ingested in the last 30 minutes or less. Should I define a partitioning policy on my table?
 
 No. The partitioning process runs after ingestion, and may not be able to partition all of the recently ingested data within a short period (e.g. 30 minutes or less).
 
-> 2. The cardinality of my candidate column for a hash partition key is low (e.g 10 values). Should I define a partitioning policy on my table?
+#### 2. The cardinality of my candidate column for a hash partition key is low (e.g 10 values). Should I define a partitioning policy on my table?
 
 No. With lower cardinalities, the benefits of re-partitioning the data decrease significantly, and aren't likely to overweigh the overhead of the background process.
 
-> 3. I have a large backlog (e.g. multi-terabytes) of data that is already ingested from a while back. Should I set the `EffectiveDateTime` property in the partitioning policy to include it?
+#### 3. I have a large backlog (e.g. multi-terabytes) of data that is already ingested from a while back. Should I set the `EffectiveDateTime` property in the partitioning policy to include it?
 
 It is recommended to focus on newly ingested data, that hasn't yet been merged into larger data shards - those are likely to take much longer to re-partition, and that may impact
 partitioning of newly-ingested data in other tables in the database.
@@ -144,13 +144,13 @@ It is possible to re-partition old data, however if you do choose to partition h
 datetime in steps of up to a few days each time you alter the policy, while [monitoring](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/partitioningpolicy#monitor-partitioning){:target="_blank"}
 the health of the process before progressing on to the next step.
 
-> 4. I'm importing a large data set stored in a different database technology, where it had a partitioning policy defined. Should I use the same partition keys in Kusto?
+#### 4. I'm importing a large data set stored in a different database technology, where it had a partitioning policy defined. Should I use the same partition keys in Kusto?
 
 Not necessarily. By default, tables in Kusto are partitioned according to the time at which data is ingested. In the majority of use cases, there is no need to change that, unlike in other technologies, in which data partitioning is necessary in many cases, to reach better performance.
 
 The specific scenarios in which data partitioning in Kusto should be considered are detailed [above](#when-to-use-data-partitioning).
 
-> 5. Is there a way for me to see the percentage of partitioned records across _all_ tables in my database, and not just the table with the minimal percentage (for which I use `.show diagnostics`)?
+### 5. Is there a way for me to see the percentage of partitioned records across _all_ tables in my database, and not just the table with the minimal percentage (for which I use `.show diagnostics`)?
 
 Yes. You may use the following command - However, don't do so frequently, as it is not lightweight.
 
@@ -162,7 +162,7 @@ Yes. You may use the following command - However, don't do so frequently, as it 
 | extend percentage = round(100.0 * PartitionedRecords / TotalRecords, 2)
 ```
 
-> 6. Using `.show commands`, I'm seeing that commands of kind `ExtentsPartition` are taking long to complete and are consuming a very high amount of memory and CPU. Is there something I can do to improve the runtime of each command?
+***6. Using `.show commands`, I'm seeing that commands of kind `ExtentsPartition` are taking long to complete and are consuming a very high amount of memory and CPU. Is there something I can do to improve the runtime of each command?***
 
 This could be a result of too many records / too much data in the source extents being processed as part of a single command. The default targets (5M records / 5GB of original size) may be too high in certain cases, e.g.
 very wide tables (100s of columns).
