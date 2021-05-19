@@ -3,7 +3,7 @@ title: Follower clusters
 ---
 # Follower clusters in Kusto (Azure Data Explorer)
 
-*Last modified: 01/07/2021*
+*Last modified: 05/19/2021*
 
 In Kusto, one can [attach a database](https://docs.microsoft.com/en-us/azure/data-explorer/follower){:target="_blank"} located in a one cluster to another cluster.
 - Databases that are followed are attached in read-only mode, allowing access to data that was ingested on the leader cluster.
@@ -112,6 +112,8 @@ It is possible to configure the database on the follower with `auto-prefetch` se
     - Therefore, it is recommended to use this setting **only when necessary**, and to measure its impact against the workload's performance requirements.
 
 The control command for managing this setup can be found [here](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/cluster-follower#alter-follower-database-prefetch-extents){:target="_blank"}.
+
+### Union data from the leader and the follower
 
 Another *advanced technique* would be to define a [stored function](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/schema-entities/stored-functions){:target="_blank"} in the database, that unions the table on the leader and on the follower, such that the latest data is taken from the leader and the rest - from the follower. This function should be run on the follower.
 - This is only needed if you must have the data latency on the follower to match that on the leader. In all other cases, you can skip this technique.
