@@ -53,9 +53,9 @@ Homogeneous extents include metadata on their partition values, that allows Kust
     | summarize count() by bin(Timestamp, 1d)
     | render timechart
     ```
-  - The value `f83a65e0-da2b-42be-b59b-a8e25ea3954c` belongs to a single partition, out of the maximum number of partitions defined in the policy (for example: partition number `10` out of a total of `256`).
+  - The value `f83a65e0-da2b-42be-b59b-a8e25ea3954c` belongs to a single partition, out of the maximum number of partitions defined in the policy (for example: partition number `10` out of a total of `128`).
 - The filter on `TenantId` is highly efficient, as it allows Kusto's query planner to filter out any extents that belongs to partitions that aren't partition number `10`.
-  - Assuming equal-distribution of data across tenants in `T`, that means we're left with 1/256 (~0.39%) of the extents, even before evaluating the [datetime pre-filter](datetime-columns.md) and leveraging the default index on `TenantId`.
+  - Assuming equal-distribution of data across tenants in `T`, that means we're left with 1/128 (~0.78%) of the extents, even before evaluating the [datetime pre-filter](datetime-columns.md) and leveraging the default index on `TenantId`.
 - When the amount of concurrent queries is higher (dozens or more), the benefit increases significantly - as each such query consumes less resources.
 - In this sample use case, it's appropriate to set the partition assignment mode for the hash partition key to `Uniform`.
 
@@ -115,7 +115,7 @@ Specifically, **don't** use data partitioning when:
   - If data is already ingested into a non-partitioned table in Kusto, an easy way to check this is by running a query such as the following, and making sure the values under the `count_` column are ~even:
   ```
   T datascope=hotcache
-  | summarize count() by p = hash(my_column, 256)
+  | summarize count() by p = hash(my_column, 128)
   | order by count_ desc
   ```
 - The cardinality of the chosen hash partition key is low.
