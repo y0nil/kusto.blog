@@ -115,7 +115,8 @@ The control command for managing this setup can be found [here](https://docs.mic
 
 ### Union data from the leader and the follower
 
-Another *advanced technique* would be to define a [stored function](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/schema-entities/stored-functions){:target="_blank"} in the database, that unions the table on the leader and on the follower, such that the latest data is taken from the leader and the rest - from the follower. This function should be run on the follower.
+Another *advanced technique* would be to define a [stored function](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/schema-entities/stored-functions){:target="_blank"} in the database, that unions the table on the leader and on the follower, such that the latest data is taken from the leader and the rest - from the follower.
+- This function should be run on the follower - it can be defined either on the leader, or on a different database (not read-only) on the follower cluster.
 - This is only needed if you must have the data latency on the follower to match that on the leader. In all other cases, you can skip this technique.
 - For example:
     
@@ -140,6 +141,26 @@ Another *advanced technique* would be to define a [stored function](https://docs
     ```
 
 **Note:** It is generally recommended that workloads that require access to the most recently ingested data will run against the leader, whereas workloads that do not have that requirement, or can withstand some delay for this specific case, will run on a follower.
+
+## Frequently asked questions
+
+***1. How can I evaluate the actual lag of the follower compared to its leader?***
+
+You can run a cross-cluster query as follows:
+
+```
+let table_name = "<table_name>";
+let database_name = "<database_name>";
+let leader_url = "https://<leader_cluster_name>.<region>.kusto.windows.net";
+let follower_url = "https://<follower_cluster_name>.<region>.kusto.windows.net";
+let get_max_ingestion_time = (cluster_url:string) {
+    cluster(cluster_url).database(database_name).table(table_name)
+    | where ingestion_time() > ago(1h)
+    | summarize max(ingestion_time()) 
+             by cluster_url
+};
+union get_max_ingestion_time(leader_url), get_max_ingestion_time(follower_url)
+```
 
 ---
 
