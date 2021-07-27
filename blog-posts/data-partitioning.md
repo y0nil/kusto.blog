@@ -12,25 +12,6 @@ In specific cases, it is possible and recommended to define a [Data partitioning
 * TOC
 {:toc}
 
-## How data partitioning works
-
-- When data is ingested into a table in a Kusto database, [data shards (extents)](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/extents-overview){:target="_blank"} are created.
-- To maintain query efficiency, smaller extents are merged into larger ones.
-  - That is done automatically, as a background process.
-  - It reduces the management overhead of having a large number of extents to track.
-  - It also allows Kusto to optimize its indexes and improve compression.
-- When a partitioning policy is defined on a table, extents participate in another background process *after* they're created (ingested), and *before* they are merged.
-  - This process re-ingests the data from the source extents and creates *homogeneous* extents.
-  - In these, all values in the column that is the table's partition key belong to the same partition.
-  - Extents that belong to different partitions do not get merged together.
-- Because extents are not merged before they are *homogeneous*, it is important to make sure the cluster's maximum [capacity](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/capacitypolicy){:target="_blank"} for partitioning and for merges are balanced, so that:
-  - The rate of creating new extents isn't significantly higher than the rate of merging them.
-  - The overall number of extent in the database/cluster doesn't keep growing significantly over time.
-- Because the partitioning process requires reading and re-ingesting the data again, the process is expected to have a continuous overhead on the cluster's resources utilization.
-- In certain cases, this means that increasing [the size of the cluster](https://docs.microsoft.com/en-us/azure/data-explorer/manage-cluster-choose-sku){:target="_blank"} would be required.
-- The partitioning process prioritizes the table with a data partitioning policy that has the largest amount of non-partitioned records.
-  - It is possible that partitioning data in one very large table may delay partitioning data in other, smaller tables.
-
 ## When to use data partitioning
 
 There are very specific scenarios in which the benefits of partitioning a table outweigh the overhead of resources being continuously invested in the process. In such cases, the upside is expected to be significant, and improve query performance several times. In [other cases](#when-not-to-use-data-partitioning), however, it can do more damage than good.
@@ -126,6 +107,79 @@ Specifically, **don't** use data partitioning when:
 More importantly - make sure you:
 - Follow the guidelines in the [documentation](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/partitioningpolicy){:target="_blank"}
 - Monitor & measure the impact of the policies you set on the cluster.
+
+## How data partitioning works
+
+- When data is ingested into a table in a Kusto database, [data shards (extents)](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/extents-overview){:target="_blank"} are created.
+- To maintain query efficiency, smaller extents are merged into larger ones.
+  - That is done automatically, as a background process.
+  - It reduces the management overhead of having a large number of extents to track.
+  - It also allows Kusto to optimize its indexes and improve compression.
+- When a partitioning policy is defined on a table, extents participate in another background process *after* they're created (ingested), and *before* they are merged.
+  - This process re-ingests the data from the source extents and creates *homogeneous* extents.
+  - In these, all values in the column that is the table's partition key belong to the same partition.
+  - Extents that belong to different partitions do not get merged together.
+- Because extents are not merged before they are *homogeneous*, it is important to make sure the cluster's maximum [capacity](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/capacitypolicy){:target="_blank"} for partitioning and for merges are balanced, so that:
+  - The rate of creating new extents isn't significantly higher than the rate of merging them.
+  - The overall number of extent in the database/cluster doesn't keep growing significantly over time.
+- Because the partitioning process requires reading and re-ingesting the data again, the process is expected to have a continuous overhead on the cluster's resources utilization.
+- In certain cases, this means that increasing [the size of the cluster](https://docs.microsoft.com/en-us/azure/data-explorer/manage-cluster-choose-sku){:target="_blank"} would be required.
+- The partitioning process prioritizes the table with a data partitioning policy that has the largest amount of non-partitioned records.
+  - It is possible that partitioning data in one very large table may delay partitioning data in other, smaller tables.
+
+## Advanced scenarios
+
+### Multiple high cardinality keys
+
+At times, you may find that queries may frequently filter on more than a single high cardinality string column, which makes the choice of a hash partition key more challenging.
+The choice in these cases may depend on the relationship between these columns, and, if such exists - the ability to create a lookup table from one column to another.
+
+#### Example
+
+* You have a table named `Telemetry`, with 2 columns:
+  * `device_id`: cardinality = 100M.
+  * `manufacturer_id`: cardinality = 10M.
+* Queries always filter on `device_id` or on `manufacturer_id`, or on both.
+* Each device is manufactured by a single manufacturer, meaning that given a certain value of `device_id`, there's a single matching value of `manufacturer_id`.
+
+In this case, it would be recommended to:
+* Define `manufacturer_id` as the hash partition key of the table.
+* Create a lookup table of `device_id` to `manufacturer_id`, so that given the former you can find the value of the latter.
+  * This table can be created using a [materialized-view](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/materialized-views/materialized-view-overview){:target="_blank"}.
+  * This table (or materialized view) will have `device_id` as its hash partition key, as lookups over it will always filter by `device_id`.
+* Create a function to get the manufacturer ID by a device ID:
+
+  ```
+  .create function get_manufacturer_by_device = (_device_id:string) 
+  {
+      toscalar(
+          device_to_manufacturer // <-- this is the lookup table / materialized-view
+          | where device_id == _device_id
+          | project manufacturer_id
+          | take 1
+      )
+  }
+  ```
+
+* Queries or functions that would have filtered by only by `device_id` remain the same.
+* Queries or functions that would have filtered by both `device_id` and `manufacturer_id` remain the same.
+* Queries or functions that would have filtered by only by `device_id` will change as follows:
+  * Instead of running this:
+    
+    ```
+    Telemetry
+    | where device_id == 'input device ID'
+    ```
+
+    Run this:
+
+    ```
+    Telemetry
+    | where manufacturer_id == get_manufacturer_by_device('input device ID')
+    | where device_id == 'input device ID'
+    ```
+
+* With that, you will guarantee to all queries filter on the table's hash partition key, and benefit from pre-filtering done during query planning.
 
 ## Frequently asked questions
 
