@@ -136,7 +136,7 @@ The choice in these cases may depend on the relationship between these columns, 
 
 #### Example
 
-* You have a table named `Telemetry`, with 2 columns:
+* You have a table named `telemetry`, with 2 columns:
   * `device_id`: cardinality = 100M.
   * `manufacturer_id`: cardinality = 10M.
 * Queries always filter on `device_id` or on `manufacturer_id`, or on both.
@@ -147,13 +147,38 @@ In this case, it would be recommended to:
 * Create a lookup table of `device_id` to `manufacturer_id`, so that given the former you can find the value of the latter.
   * This table can be created using a [materialized-view](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/materialized-views/materialized-view-overview){:target="_blank"}.
   * This table (or materialized view) will have `device_id` as its hash partition key, as lookups over it will always filter by `device_id`.
+
+  ```
+  .create async materialized-view device_to_manufacturer_lookup on table telemetry
+  {
+      telemetry
+      | summarize take_any(manufacturer_id) by device_id
+  }
+  ```
+
+  ```
+  .alter materialized-view device_to_manufacturer_lookup policy partitioning ```{
+      "PartitionKeys": [
+        {
+          "ColumnName": "device_id",
+          "Kind":"Hash",
+          "Properties": {
+              "Function": "XxHash64",
+              "MaxPartitionCount":128,
+              "PartitionAssignmentMode":"Uniform"
+          }
+        }
+      ]
+  }```
+  ```
+
 * Create a function to get the manufacturer ID by a device ID:
 
   ```
   .create function get_manufacturer_by_device = (_device_id:string) 
   {
       toscalar(
-          device_to_manufacturer // <-- this is the lookup table / materialized-view
+          device_to_manufacturer_lookup // <-- this is the lookup table / materialized-view
           | where device_id == _device_id
           | project manufacturer_id
           | take 1
@@ -167,14 +192,14 @@ In this case, it would be recommended to:
   * Instead of running this:
     
     ```
-    Telemetry
+    telemetry
     | where device_id == 'input device ID'
     ```
 
     Run this:
 
     ```
-    Telemetry
+    telemetry
     | where manufacturer_id == get_manufacturer_by_device('input device ID')
     | where device_id == 'input device ID'
     ```
