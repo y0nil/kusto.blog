@@ -178,8 +178,8 @@ In this case, it would be recommended to:
   .create function get_manufacturer_by_device = (_device_id:string) 
   {
       toscalar(
-          device_to_manufacturer_lookup // <-- this is the lookup table / materialized-view
-          | where device_id == _device_id
+          device_to_manufacturer_lookup   // <-- the lookup table / materialized-view
+          | where device_id == _device_id // <-- the filter on the hash partition key
           | project manufacturer_id
           | take 1
       )
@@ -200,7 +200,7 @@ In this case, it would be recommended to:
 
     ```
     telemetry
-    | where manufacturer_id == get_manufacturer_by_device('input device ID')
+    | where manufacturer_id == get_manufacturer_by_device('input device ID') // <-- filter on the hash partition key
     | where device_id == 'input device ID'
     ```
 
