@@ -186,9 +186,9 @@ In this case, it would be recommended to:
   }
   ```
 
-* Queries or functions that would have filtered by only by `device_id` remain the same.
+* Queries or functions that would have filtered only by `manufacturer_id` remain the same.
 * Queries or functions that would have filtered by both `device_id` and `manufacturer_id` remain the same.
-* Queries or functions that would have filtered by only by `device_id` will change as follows:
+* Queries or functions that would have filtered only by `device_id` will change as follows:
   * Instead of running this:
     
     ```
