@@ -149,7 +149,8 @@ In this case, it would be recommended to:
   * This table (or materialized view) will have `device_id` as its hash partition key, as lookups over it will always filter by `device_id`.
 
   ```
-  .create async materialized-view device_to_manufacturer_lookup on table telemetry
+  .create async materialized-view with (backfill=true)
+  device_to_manufacturer_lookup on table telemetry
   {
       telemetry
       | summarize take_any(manufacturer_id) by device_id
@@ -175,13 +176,12 @@ In this case, it would be recommended to:
 * Create a function to get the manufacturer ID by a device ID:
 
   ```
-  .create function get_manufacturer_by_device = (_device_id:string) 
+  .create function get_manufacturer_by_device (_device_id:string) 
   {
       toscalar(
           device_to_manufacturer_lookup   // <-- the lookup table / materialized-view
           | where device_id == _device_id // <-- the filter on the hash partition key
           | project manufacturer_id
-          | take 1
       )
   }
   ```
