@@ -4,8 +4,12 @@ nav_order: 3
 ---
 # Kusto (Azure Data Explorer) customer stories
 
-*Last modified: 12/31/2020*
+*Last modified: 08/13/2021*
 
+- [**LinkedIn** simplifies log management with Azure Data Explorer](https://customers.microsoft.com/en-us/story/1402548740909443355-linkedin-professional-services-azure-en-united-states){:target="_blank"}
+- [**Barracuda** scales in-text search with Azure Data Explorer](https://customers.microsoft.com/en-us/story/1402580222490495133-barracuda-professional-services-azure-en-united-states){:target="_blank"}
+- [**Talion** streamlines its cybersecurity offering with Azure Data Explorer](https://customers.microsoft.com/en-us/story/1393992049112389827-talion){:target="_blank"}
+- [Belgian railway operator, **Infrabel**, drives up data management with Azure Data Explorer](https://customers.microsoft.com/en-us/story/1387287947725357441-infrabel-travel-transportation-azure-en-belgium){:target="_blank"}
 - [Better forecasting, safer driving with **Bosch**](https://customers.microsoft.com/en-us/story/816933-bosch-automotive-azure-germany){:target="_blank"}
 - [Data-driven **Dodo Pizza** raises performance with Azure Data Explorer](https://customers.microsoft.com/en-us/story/851838-dodo-pizza-consumer-goods-azure-en-russia){:target="_blank"}
 - [Global consultancy **Milliman** powers award - winning Arius insurance reserving software using Azure Data Explorer](https://customers.microsoft.com/en-us/story/842088-milliman-insurance-azure-en-united-states){:target="_blank"}
