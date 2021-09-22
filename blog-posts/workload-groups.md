@@ -151,7 +151,7 @@ The following request classification function splits incoming requests into 4 cu
 
 ## Additional policies
 
-Additional policies can be defined at the workload group level: {:target="_blank"}
+Additional policies can be defined at the workload group level:
 
 * [Request queuing policy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/request-queuing-policy){:target="_blank"} - Controls queueing of requests for delayed execution, once a certain threshold of concurrent requests is exceeded.
 * [Query consistency policy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/query-consistency-policy){:target="_blank"} - Controls options for [consistency](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/concepts/queryconsistency){:target="_blank"} of queries.
