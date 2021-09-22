@@ -3,7 +3,7 @@ title: Workload groups
 ---
 # Workload groups in Kusto (Azure Data Explorer)
 
-*Last modified: 01/25/2021*
+*Last modified: 09/22/2021*
 
 [Workload groups](https://docs.microsoft.com/azure/data-explorer/kusto/management/workload-groups){:target="_blank"} allow you to group together sets of requests
 (commands and/or queries) that have similar characteristics, and apply policies to control per-request limits and request rate limits for each of these groups.
@@ -148,6 +148,14 @@ The following request classification function splits incoming requests into 4 cu
         hourofday(now()) between (9 .. 17), "9 to 5",
         "default")
 ```
+
+## Additional policies
+
+Additional policies can be defined at the workload group level: {:target="_blank"}
+
+* [Request queuing policy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/request-queuing-policy){:target="_blank"} - Controls queueing of requests for delayed execution, once a certain threshold of concurrent requests is exceeded.
+* [Query consistency policy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/query-consistency-policy){:target="_blank"} - Controls options for [consistency](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/concepts/queryconsistency){:target="_blank"} of queries.
+* [Request rate limits enforcement policy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/request-rate-limits-enforcement-policy){:target="_blank"} - Controls how request rate limits are enforced.
 
 ---
 
