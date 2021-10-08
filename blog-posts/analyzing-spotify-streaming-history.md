@@ -1,7 +1,7 @@
 ---
 title: Analyzing Spotify streaming history
 ---
-# Analyzing Spotify streaming history in Kusto (Azure Data Explorer)
+# Analyzing Spotify streaming history in Kusto
 
 *Last modified: 01/19/2019*
 
@@ -9,10 +9,10 @@ Like many people out there, I love listening to music, wherever I go, whenever p
 And, like many others, I use a music streaming service to do so. My personal choice is [Spotify](https://www.spotify.com){:target="_blank"}. 
 
 <p align="center">
-  <img title="Analyzing Spotify streaming history in Kusto (Azure Data Explorer)" src="../resources/images/spotify-logo.png">
+  <img title="Analyzing Spotify streaming history in Kusto" src="../resources/images/spotify-logo.png">
 </p>
 
-I usually just push 'Play' without paying too much attention to what's playing, but I thought it would be nice to make some sense of what I've been listening to. And, I couldn't think of a simpler or better way to do that than using Kusto (Azure Data Explorer).
+I usually just push 'Play' without paying too much attention to what's playing, but I thought it would be nice to make some sense of what I've been listening to. And, I couldn't think of a simpler or better way to do that than using Kusto.
 
 *(Some of the data points in this post have been altered for the sake of privacy)*
 
@@ -29,7 +29,7 @@ to download a list of items (e.g. songs, videos, and podcasts) you've listened t
 - Name of items listened to or watched (e.g. title of music track or name of video).
 - Date and time of the stream.
 
-Once you get the "Your data is available to download" email (it could take a few days after your request), you can download the aforementioned data set in a standard JSON format, which makes it super easy to analyze in Kusto (Azure Data Explorer).
+Once you get the "Your data is available to download" email (it could take a few days after your request), you can download the aforementioned data set in a standard JSON format, which makes it super easy to analyze in Kusto.
 
 The data I used is the one in the file named `StreamingHistory.json`.
 Here's an example of a few records
@@ -62,11 +62,11 @@ from it:
 }
 ```
 
-## Ingesting the data into Kusto (Azure Data Explorer)
+## Ingesting the data into Kusto
 
 [Kusto.Explorer](https://docs.microsoft.com/en-us/azure/kusto/tools/kusto-explorer){:target="_blank"}
 makes it super easy to [ingest](https://docs.microsoft.com/en-us/azure/kusto/tools/kusto-explorer#importing-a-local-file-into-a-kusto-table){:target="_blank"} this JSON file into a table in your Kusto database.
-[I've already demonstrated it in the [Update policies for in-place ETL in Kusto (Azure Data Explorer)](update-policies.md){:target="_blank"} post.
+[I've already demonstrated it in the [Update policies for in-place ETL in Kusto](update-policies.md){:target="_blank"} post.
 
 *The entire process literally took me less than 1 minute.*
 

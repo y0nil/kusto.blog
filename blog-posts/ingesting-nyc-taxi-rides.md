@@ -1,7 +1,7 @@
 ---
 title: Ingesting 2 billion NYC taxi rides
 ---
-# Ingesting 2 billion new york city taxi rides into Kusto (Azure Data Explorer)
+# Ingesting 2 billion new york city taxi rides into Kusto
 
 *Last modified: 03/06/2019*
 
@@ -12,7 +12,7 @@ for anyone to download and analyze. These records capture pick-up and drop-off d
 trip distances, itemized fares, rate types, payment types, and driver-reported passenger counts.
 
 <p align="center">
-  <img title="Ingesting 2 Billion New York City Taxi rides into Kusto (Azure Data Explorer)" src="../resources/images/nyc-taxi-theme.png">
+  <img title="Ingesting 2 Billion New York City Taxi rides into Kusto" src="../resources/images/nyc-taxi-theme.png">
 </p>
 
 [Todd W. Schneider](https://github.com/toddwschneider){:target="_blank"} took this data to the next level, and in his
@@ -26,8 +26,8 @@ At the time of writing this post (February 2019), the available data set include
     * ~ 1.5 billion taxi, from 2009-01-01 to 2018-06-30.
     * ~ 0.5 billion for-hire vehicle, from from 2015-01-01 to 2018-06-30.
 
-This is a fair amount of records, and for getting it ingested and analyzed quickly, I made the natural choice of using **Kusto
-(Azure Data Explorer)**. After preparing the data set in PostgreSQL, I easily exported it to blobs in CSV format, and made it
+This is a fair amount of records, and for getting it ingested and analyzed quickly, I made the natural choice of using **Kusto**.
+After preparing the data set in PostgreSQL, I easily exported it to blobs in CSV format, and made it
 available for Kusto to consume.
 
 This post covers ingestion of the data into Kusto, while [another post](analyzing-nyc-taxi-rides.md){:target="_blank"}
@@ -216,7 +216,7 @@ a list of URLs for these CSV files, and have them ingested from **Amazon S3**, w
 
 For the purpose of this ingestion I used:
 
-* An Azure Data Explorer cluster with 6 `D14_v2` nodes (it was over-provisioned for the purpose of the previous section, 
+* A Kusto cluster with 6 `D14_v2` nodes (it was over-provisioned for the purpose of the previous section, 
   I [scaled](https://docs.microsoft.com/en-us/azure/data-explorer/manage-cluster-scale-out){:target="_blank"} it down later).
 * The [Microsoft.Azure.Kusto.Ingest.NETStandard](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest.NETStandard) NuGet package.
 
@@ -324,7 +324,7 @@ Now that I have all of this data ingested, [it's time to start analyzing it](ana
 
 In case you're going to perform this on an Azure VM, you may find the following tips useful.
 
-**Note**: These are  not related to Kusto (Azure Data Explorer), but they may help you get the
+**Note**: These are  not related to Kusto, but they may help you get the
 data prepared, before ingesting it.
 
 * I used an `Ubuntu Server 16.04 LTS` [D5_v2](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-general#dv2-series){:target="_blank"} virtual machine.

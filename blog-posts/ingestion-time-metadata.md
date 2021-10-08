@@ -1,7 +1,7 @@
 ---
 title: Specifying metadata at ingestion time
 ---
-# Specifying metadata at ingestion time in Kusto (Azure Data Explorer)
+# Specifying metadata at ingestion time in Kusto
 
 *Last modified: 12/21/2018*
 

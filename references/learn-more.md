@@ -2,7 +2,7 @@
 title: Learn more
 nav_order: 1
 ---
-# Learn more about Kusto (Azure Data Explorer)
+# Learn more about Kusto
 
 ### **October 2020 updates**
 
@@ -28,7 +28,7 @@ nav_order: 1
 
 - [Azure Data Explorer @ Microsoft Tech Community](https://techcommunity.microsoft.com/t5/azure-data-explorer/bg-p/AzureDataExplorer){:target="_blank"}
 
-### **Highlights from Kusto (Azure Data Explorer) documentation**
+### **Highlights from Kusto documentation**
 
 - [Creating a cluster and databases](https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-portal){:target="_blank"}
 - [Query best practices](https://docs.microsoft.com/en-us/azure/kusto/query/best-practices){:target="_blank"}

@@ -1,7 +1,7 @@
 ---
 title: Analyzing Uber rides history
 ---
-# Analyzing Uber rides history in Kusto (Azure Data Explorer)
+# Analyzing Uber rides history in Kusto
 
 *Last modified: 02/09/2019*
 
@@ -12,12 +12,12 @@ about how people across the world are using these services, as well as comparing
 Having recently moved to a city where these are one of the main means of day-to-day transportation, my usage of them as a rider has significantly grown.
 I decided it's time to look into some data and see what I can learn from it.
 
-Naturally, I chose **Kusto (Azure Data Explorer)** to look into it, and I took my personal data from [Uber](https://www.uber.com){:target="_blank"} for a ride.
+Naturally, I chose **Kusto** to look into it, and I took my personal data from [Uber](https://www.uber.com){:target="_blank"} for a ride.
 
 *(Some of the data points in this post have been altered for the sake of privacy)*
 
 <p align="center">
-  <img title="Analyzing Uber rides history in Kusto (Azure Data Explorer)" src="../resources/images/uber-logo.jpg">
+  <img title="Analyzing Uber rides history in Kusto" src="../resources/images/uber-logo.jpg">
 </p>
 
 * TOC
@@ -34,7 +34,7 @@ to download your rides history, including properties such as:
 - Fare amount and currency.
 
 Once you get the "Your data is available to download" email (it could take a few days after your request), you can download the aforementioned data set
-in a standard CSV format, which makes it super easy to analyze in Kusto (Azure Data Explorer).
+in a standard CSV format, which makes it super easy to analyze in Kusto.
 
 The data I used is the one in the file named `trips_data.csv`.
 Here's an example of a few records from it:
@@ -46,13 +46,13 @@ San Francisco,UberX,COMPLETED,2018-08-15 19:27:02 +0000 UTC,2018-08-15 19:29:30 
 San Francisco,Express Pool: MATCHED,COMPLETED,2018-08-12 21:20:24 +0000 UTC,2018-08-12 21:27:40 +0000 UTC,47.7792305817,-555.434557152,"1111 ... Ave, San Francisco, CA 81445, USA",2018-08-12 21:42:51 +0000 UTC,47.7870367854,-666.392240158,"999 ... St, San Francisco, CA 94105, USA",2.77,3.33,USD
 ```
 
-## Ingesting the data into Kusto (Azure Data Explorer)
+## Ingesting the data into Kusto
 
 Even though it's possible to get this done super-easily using [Kusto.Explorer](https://docs.microsoft.com/en-us/azure/kusto/tools/kusto-explorer){:target="_blank"},
 this time I decided to show a different way, super-easy as well, using Kusto's [externaldata operator](https://docs.microsoft.com/en-us/azure/kusto/query/externaldata-operator){:target="_blank"}.
 - Examples for ingestion using [Kusto.Explorer](https://docs.microsoft.com/en-us/azure/kusto/tools/kusto-explorer){:target="_blank"} can be found in my other posts:
-    - [Analyzing Spotify streaming history in Kusto (Azure Data Explorer)](analyzing-spotify-streaming-history.md)
-    - [Update policies for in-place ETL in Kusto (Azure Data Explorer)](update-policies.md)
+    - [Analyzing Spotify streaming history in Kusto](analyzing-spotify-streaming-history.md)
+    - [Update policies for in-place ETL in Kusto](update-policies.md)
 
 *(The entire process literally took me less than 1 minute)*
 
@@ -94,7 +94,7 @@ this time I decided to show a different way, super-easy as well, using Kusto's [
 ## Analyzing the data
 
 This is by no means Big Data, and not even close to Billions of rides, which I've covered in [another post](analyzing-nyc-taxi-rides.md){:target="_blank"},
-however it does allow to see the capabilities of Kusto (Azure Data Explorer) very nicely. Plus, if you hop over to that other post after reading this on,
+however it does allow to see the capabilities of Kusto very nicely. Plus, if you hop over to that other post after reading this on,
 you'll see that Kusto performs great for data sets with billions of rides too.
 
 *(Got suggestions for more interesting queries? Let me know and I'll update the post based on your feedback)*

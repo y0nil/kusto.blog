@@ -1,7 +1,7 @@
 ---
 title: Advanced data management
 ---
-# Advanced data management in Kusto (Azure Data Explorer)
+# Advanced data management in Kusto
 
 *Last modified: 11/19/2018*
 

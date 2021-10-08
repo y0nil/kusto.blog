@@ -1,7 +1,7 @@
 ---
 title: Follower clusters
 ---
-# Follower clusters in Kusto (Azure Data Explorer)
+# Follower clusters in Kusto
 
 *Last modified: 05/19/2021*
 
@@ -43,7 +43,7 @@ This allows having different workloads run across different resources, without o
 Providing partners and customers with access to your data, or a specific subset of it, is possible using [Azure data share](https://docs.microsoft.com/en-us/azure/data-explorer/data-share){:target="_blank"}. The data is ingested once, and there's no need to export or import it. The underlying implementation uses the mechanics described in this post.
 
 <p align="center">
-  <img title="Follower clusters in Kusto (Azure Data Explorer)" src="https://docs.microsoft.com/en-us/azure/data-explorer/media/data-share/adx-datashare-image.png">
+  <img title="Follower clusters in Kusto" src="https://docs.microsoft.com/en-us/azure/data-explorer/media/data-share/adx-datashare-image.png">
 </p>
 
 ## Policy overrides

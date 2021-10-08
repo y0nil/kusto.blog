@@ -1,7 +1,7 @@
 ---
 title: Data partitioning
 ---
-# Data partitioning in Kusto (Azure Data Explorer)
+# Data partitioning in Kusto
 
 *Last modified: 07/27/2021*
 

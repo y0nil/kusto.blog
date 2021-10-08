@@ -1,7 +1,7 @@
 ---
 title: Analyzing 2 billion NYC taxi rides
 ---
-# Analyzing 2 billion New York city taxi rides in Kusto (Azure Data Explorer)
+# Analyzing 2 billion New York city taxi rides in Kusto
 
 *Last modified: 02/10/2019*
 
@@ -12,10 +12,10 @@ for anyone to download and analyze. These records capture pick-up and drop-off d
 trip distances, itemized fares, rate types, payment types, and driver-reported passenger counts.
 
 <p align="center">
-  <img title="Analyzing 2 Billion New York City Taxi rides in Kusto (Azure Data Explorer)" src="../resources/images/nyc-taxi-theme-2.png">
+  <img title="Analyzing 2 Billion New York City Taxi rides in Kusto" src="../resources/images/nyc-taxi-theme-2.png">
 </p>
 
-I've detailed how simple and efficient it is to ingest this data set into **Kusto (Azure Data Explorer)** in [another post](ingesting-nyc-taxi-rides.md).
+I've detailed how simple and efficient it is to ingest this data set into **Kusto** in [another post](ingesting-nyc-taxi-rides.md).
 
 A quick search on Google will show you many people have taken a 1.x Billion taxi rides data set for a ride, with the intention of:
 * Comparing query performance of multiple data platforms with different topologies.
@@ -35,7 +35,7 @@ In this post, I will do some of both.
 
 For the purpose of this evaluation, I used:
 
-1. An **Kusto (Azure Data Explorer)** cluster with `D14_v2` nodes, which I've scaled gradually from 2 to 4, 6 and finally - 8 nodes.
+1. An **Kusto** cluster with `D14_v2` nodes, which I've scaled gradually from 2 to 4, 6 and finally - 8 nodes.
     * *Note*: The evaluation detailed in this post ran with `V2` of the Kusto Engine. A new and improved `V3` became generally available during March 2021.
     * These VMs have 16 vCPUs and 112GB of RAM.
         * I later on scaled down the cluster to 2 `D12_v2` (4 vCPUs, 28GB of RAM) nodes, and repeated the same query test run.

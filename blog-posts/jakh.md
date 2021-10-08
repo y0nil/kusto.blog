@@ -5,7 +5,7 @@ title: Just another Kusto hacker (JAKH)
 
 *Last modified: 11/08/2018*
 
-Back in 2017, the Kusto (Azure Data Explorer) team came up with yet another brilliant idea:
+Back in 2017, the Kusto team came up with yet another brilliant idea:
 Many people simply love our query language, why don't we challenge them with writing creative, thought-provoking,
 and even crazy queries, which will all be required to output the same string: `Just another Kusto hacker`
 (following the well-known, and similar-in-spirit, [Just another Perl hacker](https://en.wikipedia.org/wiki/Just_another_Perl_hacker){:target="_blank"}).

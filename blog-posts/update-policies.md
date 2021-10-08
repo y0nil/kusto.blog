@@ -1,11 +1,11 @@
 ---
 title: Update policies ELT
 ---
-# Update policies for ELT in Kusto (Azure Data Explorer)
+# Update policies for ELT in Kusto
 
 *Last modified: 11/08/2018*
 
-Kusto (Azure Data Explorer) is super fast and efficient in getting your data ingested (, and then queried).
+Kusto is super fast and efficient in getting your data ingested (, and then queried).
 
 It's usually recommended that your data is formatted to begin with, in either of the [supported
 data formats](https://docs.microsoft.com/en-us/azure/kusto/management/data-ingestion/#supported-data-formats){:target="_blank"},
@@ -18,7 +18,7 @@ In this post, I will demonstrate how you can leverage an [update policy](https:/
 lot in the efficiency of all the queries which will run against your data set.
 
 <p align="center">
-  <img title="Update policies for in-place ETL in Kusto (Azure Data Explorer)" src="https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/images/updatepolicy/update-policy-overview.png">
+  <img title="Update policies for in-place ETL in Kusto" src="https://docs.microsoft.com/en-us/azure/data-explorer/kusto/management/images/updatepolicy/update-policy-overview.png">
 </p>
 
 * TOC

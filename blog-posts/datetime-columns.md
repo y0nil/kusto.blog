@@ -1,11 +1,11 @@
 ---
 title: DateTime columns
 ---
-# DateTime columns in Kusto (Azure Data Explorer)
+# DateTime columns in Kusto
 
 *Last modified: 11/08/2018*
 
-When you ingest batches of data into Kusto (Azure Data Explorer), it gets stored in a sharded column store, where each column is compressed and indexed.
+When you ingest batches of data into Kusto, it gets stored in a sharded column store, where each column is compressed and indexed.
 The scope of each index is a single [data shard (extent)](https://docs.microsoft.com/en-us/azure/kusto/management/extents-overview){:target="_blank"}, and the implementation of the index depends on the type of the column.
 
 For [datetime](https://docs.microsoft.com/en-us/azure/kusto/query/scalar-data-types/datetime){:target="_blank"} columns, the minimum and maximum values for each data shard are stored as part of the extent's metadata. This is done automatically for any datetime column, no user configuration is required.
