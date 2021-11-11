@@ -1,7 +1,7 @@
 remote_theme: pmarsceill/just-the-docs
 markdown: kramdown
 title: kusto.blog
-author: yonileibowitz
+author: y0nil
 logo: "/resources/images/adx-logo.png"
 search_enabled: true
 heading_anchors: true
@@ -21,10 +21,10 @@ aux_links:
   "Stack Overflow":
     - "https://stackoverflow.com/users/7861807/yoni"
   "GitHub":
-    - "https://github.com/yonileibowitz/yonileibowitz.github.io"
+    - "https://github.com/y0nil/kusto.blog"
   "Official Documentation":
     - "https://docs.microsoft.com/en-us/azure/data-explorer"
 social:
-  name: Yoni Leibowitz
+  name: Yoni L
   links:
     - https://www.linkedin.com/in/yonileibo/

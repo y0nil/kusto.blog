@@ -4,4 +4,4 @@ The posts in this blog include examples and practices which combine the rich que
 
 # Feedback
 
-Comments, requests and any kind of feedback are more than welcome - feel free to open [issues](https://github.com/yonileibowitz/yonileibowitz.github.io/issues) or start [discussions](https://github.com/yonileibowitz/yonileibowitz.github.io/discussions).
+Comments, requests and any kind of feedback are more than welcome - feel free to open [issues](https://github.com/y0nil/kusto.blog/issues) or start [discussions](https://github.com/y0nil/kusto.blog/discussions).
