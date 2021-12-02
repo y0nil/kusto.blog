@@ -27,7 +27,7 @@ workload groups, as well as edit the policies of the `default` workload group.
 You may have experienced the problem of a user running a report for a very large date range, unleashing a non-optimized query that could run for several minutes.
 These kinds of runaway queries may cause a few performance problems, and you may want to have predefined limits to protect against them.
 
-A workload group's [request limit policy](https://docs.microsoft.com/azure/data-explorer/kusto/management/request-limit-policy){:target="_blank"}
+A workload group's [request limits policy](https://docs.microsoft.com/azure/data-explorer/kusto/management/request-limits-policy){:target="_blank"}
 lets you play it safe in these types of cases, by placing a ceiling on the amount of resources and/or the parallelism of the query's execution.
 - This can be thought of as a means for *de-prioritizing* certain workloads, while keeping others running in the most optimized manner (the default).
 
