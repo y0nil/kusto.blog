@@ -8,6 +8,8 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 **Kusto is available for *FREE* using an [emulator](https://docs.microsoft.com/en-us/azure/data-explorer/kusto-emulator-overview){:target="_blank"} or [in the cloud](https://docs.microsoft.com/en-us/azure/data-explorer/start-for-free){:target="_blank"}**
 
+**You might also enjoy solving cases and winning *PRIZES* at the [Kusto Detective Agency](https://detective.kusto.io/){:target="_blank"}**
+
 <p align="center">
   <img src="resources/images/adx-logo.png">
 </p>
