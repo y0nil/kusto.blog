@@ -43,10 +43,10 @@ Homogeneous extents include metadata on their partition values, that allows Kust
 ### Joins / aggregations
 
 When a table has a hash partition key defined in its partitioning policy, there are two different assignment modes:
-- `Default`: All homogeneous extents that belong to the *same* partition are assigned to the *same* node in the cluster.
+- `ByPartition`: All homogeneous extents that belong to the *same* partition are assigned to the *same* node in the cluster.
 - `Uniform`: Extents' partition values are *not* taken into account when assigning extents *uniformly* to the cluster's nodes.
 
-Choosing the `Default` mode makes sense when the cardinality of the hash partition key is very high, partitions are expected to be ~equally-sized, and the query pattern uses the [shuffle strategy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/shufflequery){:target="_blank"} often.
+Choosing the `ByPartition` mode makes sense when the cardinality of the hash partition key is very high, partitions are expected to be ~equally-sized, and the query pattern uses the [shuffle strategy](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/shufflequery){:target="_blank"} often.
 - Queries that use the `shuffle` strategy, and in which the shuffle key used in `join`, `summarize` or `make-series` is the table's hash partition key - are expected to perform better. This is because the amount of data required to move across the cluster's nodes is significantly reduced.
 
 #### Example
