@@ -11,7 +11,7 @@ In specific cases, it is possible and recommended to define a [Data partitioning
 
 * TOC
 {:toc}
-
+f
 ## When to use data partitioning
 
 There are very specific scenarios in which the benefits of partitioning a table outweigh the overhead of resources being continuously invested in the process. In such cases, the upside is expected to be significant, and improve query performance several times. In [other cases](#when-not-to-use-data-partitioning), however, it can do more damage than good.
@@ -231,16 +231,12 @@ Not necessarily. By default, tables in Kusto are partitioned according to the ti
 
 The specific scenarios in which data partitioning in Kusto should be considered are detailed [above](#when-to-use-data-partitioning).
 
-***5. Is there a way for me to see the percentage of partitioned records across _all_ tables in my database, and not just the table with the minimal percentage (for which I use `.show diagnostics`)?***
+***5. Is there a way for me to see the percentage of partitioned records across all tables in my database?***
 
-Yes. You may use the following command - However, don't do so frequently, as it is not lightweight.
+Yes. You may use the following command:
 
 ```
-.show database DATABASE_NAME extents details
-| summarize TotalRecords = sum(RowCount),
-            PartitionedRecords = sumif(RowCount, isnotempty(Partition))
-         by TableName
-| extend percentage = round(100.0 * PartitionedRecords / TotalRecords, 2)
+.show database DATABASE_NAME extents partitioning statistics
 ```
 
 ***6. Using `.show commands`, I'm seeing that commands of kind `ExtentsPartition` are taking long to complete and are consuming a very high amount of memory and CPU. Is there something I can do to improve the runtime of each command?***
