@@ -11,7 +11,7 @@ In specific cases, it is possible and recommended to define a [Data partitioning
 
 * TOC
 {:toc}
-f
+
 ## When to use data partitioning
 
 There are very specific scenarios in which the benefits of partitioning a table outweigh the overhead of resources being continuously invested in the process. In such cases, the upside is expected to be significant, and improve query performance several times. In [other cases](#when-not-to-use-data-partitioning), however, it can do more damage than good.
