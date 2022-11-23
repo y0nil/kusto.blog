@@ -109,7 +109,7 @@ First, I created the table with a schema which matches the data I exported from 
 )
 ```
 
-For ingestion, I chose using [LightIngest](https://docs.microsoft.com/en-us/azure/kusto/tools/lightingest){:target="_blank"} - a simple command line utility
+For ingestion, I chose using [LightIngest](https://learn.microsoft.com/en-us/azure/data-explorer/lightingest){:target="_blank"} - a simple command line utility
 I find very useful and simple to use, if you want to some ad-hoc ingestion.
 
 All I need to know is:
@@ -142,7 +142,7 @@ I ran this with 2 different configurations, to demonstrate Kusto's ability to sc
 its ingestion capacity, depending on the number and kind of nods the cluster has.
 
 I ran the ingestion of the same set of blobs twice, while
-[changing the number of the instances my cluster had](https://docs.microsoft.com/en-us/azure/data-explorer/manage-cluster-scale-out){:target="_blank"})
+[changing the number of the instances my cluster had](https://learn.microsoft.com/en-us/azure/data-explorer/manage-cluster-horizontal-scaling){:target="_blank"})
 in between:
 * 2 X `D14_v2`, with a table named `Trips`
 * 6 X `D14_v2`, with a table named `Trips2`
