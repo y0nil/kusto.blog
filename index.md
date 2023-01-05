@@ -20,6 +20,8 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 ### **Queries**
 
+- **[Just another Kusto hacker *(JAKH)*](blog-posts/jakh.md){:target="_blank"}**
+
 - **[Analyzing Uber rides history](blog-posts/analyzing-uber-rides-history.md){:target="_blank"}**
 
 - **[Analyzing Spotify streaming history](blog-posts/analyzing-spotify-streaming-history.md){:target="_blank"}**
