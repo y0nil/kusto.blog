@@ -38,7 +38,7 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 - **[Data partitioning](blog-posts/data-partitioning.md){:target="_blank"}**
 
-- **[Ingesting 2 billion New York city taxi rides into](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
+- **[Ingesting 2 billion New York city taxi rides](blog-posts/ingesting-nyc-taxi-rides.md){:target="_blank"}**
 
 - **[Update policies for ELT](blog-posts/update-policies.md){:target="_blank"}**
 
