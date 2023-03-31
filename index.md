@@ -6,9 +6,9 @@ The posts below include examples and practices which combine the rich query and 
 They will provide you with real-life best practices and methodologies, which have all been repeatedly proven in large-scale production environments,
 and will help you make sure you make the most out of your Kusto cluster.
 
-**Kusto is available for *FREE* using an [emulator](https://docs.microsoft.com/en-us/azure/data-explorer/kusto-emulator-overview){:target="_blank"} or [in the cloud](https://docs.microsoft.com/en-us/azure/data-explorer/start-for-free){:target="_blank"}**.
+**Kusto is available for *FREE* using an [emulator](https://docs.microsoft.com/en-us/azure/data-explorer/kusto-emulator-overview){:target="_blank"} or [in the cloud](https://docs.microsoft.com/en-us/azure/data-explorer/start-for-free){:target="_blank"}.**{: style="color: green; opacity: 0.80;" }
 
-**You might also enjoy solving cases at the [Kusto Detective Agency](https://detective.kusto.io/){:target="_blank"}**.
+**You might also enjoy solving cases at the [Kusto Detective Agency](https://detective.kusto.io/){:target="_blank"}**{: style="color: green; opacity: 0.80;" }.
 
 <p align="center">
   <img src="resources/images/adx-logo.png">
@@ -30,7 +30,7 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 ### **Cluster & Data management**
 
-- **NEW!**{: style="color: green; opacity: 0.80;" }**[Query consistency](blog-posts/query-consistency.md){:target="_blank"}**
+- **NEW!**{: style="color: green; opacity: 0.80;" } **[Query consistency](blog-posts/query-consistency.md){:target="_blank"}**
 
 - **[Workload groups](blog-posts/workload-groups.md){:target="_blank"}**
 
