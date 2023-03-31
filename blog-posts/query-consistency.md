@@ -100,6 +100,7 @@ It does, however, require you to explicitly specify the session ID as part of ea
   | where level == "error"
   | count
   ```
+
 2. When the database metadata is very large (e.g. there are millions of data shards/extents in the database) - this could result with weakly consistent query heads spending
    resources on frequently downloading large metadata artifacts from persistent storage, and potentially increase the odds of transient failures in those downloads.
 
@@ -153,7 +154,7 @@ Setting `IsRelaxable` to `false` prevents the value set by the user in the clien
 For example, the policy defined by the following control command, will result with:
 
 1. All queries that get classified to the `default` workload group will run with weak consistency.
-1. The consistency mode defined by the user in the client request properties is ignored.
+2. The consistency mode defined by the user in the client request properties is ignored.
 
 ```
 .alter-merge workload_group default ```
@@ -174,7 +175,7 @@ When you run a query on *cluster A*, that invokes a remote query on *cluster B*,
 For example, if the query consistency was determined as `weakconsistency`, due to the query consistency policy defined on the workload group in *cluster A*, then the sub-query to cluster
 B will be sent with the same `weakconsistency`.
 
-*Only* if the query consistency policy defined on the workload group in *cluster B* overiddes the consistency mode (by specifying `IsRelaxable` = `false`), then the mode defined on *cluster B` applies.
+*Only* if the query consistency policy defined on the workload group in *cluster B* overiddes the consistency mode (by specifying `IsRelaxable` = `false`), then the mode defined on *cluster B* applies.
 
 ---
 
