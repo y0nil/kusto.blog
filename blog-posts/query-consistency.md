@@ -126,8 +126,8 @@ The name of the query option to set is `queryconsistency`, and the values to set
 When setting the `queryconsistency` option to `weakconsistency_by_session_id`, one should also set the query option named `query_weakconsistency_session_id` with a
 string value that represents the session's ID.
 
-A common mistake is to set the above properties as if they were boolean properties (e.g. `weakconsistency` = `true`, instead of `queryconsistency` = `weakconsistency`),
-which doesn't have any impact, and results with the effective mode being the default one, *strong* consistency.
+A potential mistake is setting the above properties as if they were boolean options (e.g. `weakconsistency` = `true`, instead of `queryconsistency` = `weakconsistency`).
+Doing so doesn't have any impact on the effective consistency mode (which is either the default *strong*, or the one specified on the server side policy).
 
 ### Specifying in a workload group query consistency policy
 
