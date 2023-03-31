@@ -69,13 +69,23 @@ my_table
 | summarize count() by level, startofday(Timestamp)
 ```
 
+### When should I use affinity by query?
+
+This mode of weak consistency can be helpful when you're also leveraging the [Query results cache](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/query-results-cache){:target="_blank"}. That way, repeating weakly consistent queries that are run frequently by the same identity can leverage results cached from recent executions
+of the same query, and reduce the load on the cluster.
+
 ### When should I use affinity by database?
 
-### When should I use affinity by query text?
+This mode of weak consistency can be helpful if it is important for you that queries running against the same database will all get executed against the *same* (though, not most recent) version of the database metadata.
+
+If, however, there's imbalance in the amount of queries running against databases in the cluster (e.g. 70% of queries are run in the context of a specific database), then the query
+head serving queries for that database will be more loaded than other query heads in the cluster, which is suboptimal.
 
 ### When should I use affinity by session ID?
 
+This mode of of weak consistency can be helpful if it is important for you that queries that belong to the same user activity/session will all get executed against the *same* (though, not most recent) version of the database metadata. 
 
+It does, however, require you to explicitly specify the session ID as part of each query's client request properties. See [below](#specifying-in-client-request-properties).
 
 ## When shouldn't I use weak consistency?
 
@@ -104,12 +114,12 @@ of the query.
 
 The name of the query option to set is `queryconsistency`, and the values to set are:
 
-|Mode                             |Client request option value   |
-|---------------------------------|------------------------------|
-|Strong                           | `strongconsistency`          |
-|Weak (Random)                    | `weakconsistency`            |
-|Weak (Affinitized by database)   | `weakconsistency_by_database`|
-|Weak (Affinitized by query text) | `weakconsistency_by_query`   |
+|Mode                             |Client request option value     |
+|---------------------------------|--------------------------------|
+|Strong                           | `strongconsistency`            |
+|Weak (Random)                    | `weakconsistency`              |
+|Weak (Affinitized by database)   | `weakconsistency_by_database`  |
+|Weak (Affinitized by query text) | `weakconsistency_by_query`     |
 |Weak (Affinitized by session ID) | `weakconsistency_by_session_id`|
 
 When setting the `queryconsistency` option to `weakconsistency_by_session_id`, one should also set the query option named `query_weakconsistency_session_id` with a
@@ -120,6 +130,47 @@ which doesn't have any impact, and retains the default mode of *strong* consiste
 
 ### Specifying in a workload group's query consistency policy
 
+The query consistency mode can be controlled on the server side, as part of a [Query consistency policy](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/management/query-consistency-policy){:target="_blank"} at the [workload group](workload-groups.md){:target="_blank"} level.
+
+Doing so can eliminate the need for users to specify the consistency mode in their client request properties, as well as provide the admin of the cluster with the ability
+to prevent users from running with an undesired consistency mode.
+
+The names of the value to in the query consistency policy are:
+
+|Mode                             |Query consistency policy value  |
+|---------------------------------|--------------------------------|
+|Strong                           | `Strong`                       |
+|Weak (Random)                    | `Weak`                         |
+|Weak (Affinitized by database)   | `WeakAffinitizedByDatabase`    |
+|Weak (Affinitized by query text) | `WeakAffinitizedByQuery`       |
+|Weak (Affinitized by session ID) | `WeakAffinitizedBySessionId`   |
+
+Setting `IsRelaxable` to `false` prevents the value set by the user in the client request properties to override the one that was set in the query consistency policy.
+
+For example, the policy defined by the following control command, will result with:
+
+1. All queries that get classified to the `default` workload group will run with weak consistency.
+1. The consistency mode defined by the user in the client request properties is ignored.
+
+```
+.alter-merge workload_group default ```
+{
+  "QueryConsistencyPolicy": {
+     "QueryConsistency": {
+        "IsRelaxable": false,
+        "Value": "Weak"
+     }
+  }
+} ```
+```
+
+## Query consistency in cross-cluster queries
+
+When you run a query on *cluster A*, that invokes a remote query on *cluster B*, the effective consistency mode is the one that was determined on *cluster A*, unless it gets overriden on
+*cluster B*.
+
+For example, if the query consistency was determined as `weakconsistency`, due to the query consistency policy defined on the workload group in *cluster A*, then the sub-query to cluster
+B will be sent with the same `weakconsistency`. If the query consistency policy defined on the workload group in *cluster B* overiddes
 
 ---
 
