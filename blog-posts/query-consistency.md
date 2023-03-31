@@ -90,19 +90,18 @@ It does, however, require you to explicitly specify the session ID as part of ea
 
 ## When shouldn't I use weak consistency?
 
-1. When you have a strong dependency on updates that occurred in the database in the last few minutes.
+When you have a strong dependency on updates that occurred in the database in the last few minutes, you should stick with the default mode of *strong* consistency.
 
-  For example, if you are running the following query, which counts the number of error records in the 5 minutes, and triggers an alert if that count is larger than 0.
+For example, if you are running the following query, which counts the number of error records in the 5 minutes, and triggers an alert if that count is larger than 0.
 
-  ```
-  my_table
-  | where timestamp between(ago(5m)..now())
-  | where level == "error"
-  | count
-  ```
+```
+my_table
+| where timestamp between(ago(5m)..now())
+| where level == "error"
+| count
+```
 
-2. When the database metadata is very large (e.g. there are millions of data shards/extents in the database) - this could result with weakly consistent query heads spending
-   resources on frequently downloading large metadata artifacts from persistent storage, and potentially increase the odds of transient failures in those downloads.
+Another case is when the database metadata is very large (e.g. there are millions of data shards/extents in the database) - this could result with weakly consistent query heads spending resources on frequently downloading & deserializing large metadata artifacts from persistent storage, which would also increase the potential for transient failures in these downloads and other operations running against the same persistent storage.
 
 ## How do I specify query consistency?
 
