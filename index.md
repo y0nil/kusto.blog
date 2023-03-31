@@ -30,6 +30,8 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 ### **Cluster & Data management**
 
+- **NEW!**{: style="color: green; opacity: 0.80;" }**[Query consistency](blog-posts/query-consistency.md){:target="_blank"}**
+
 - **[Workload groups](blog-posts/workload-groups.md){:target="_blank"}**
 
 - **[Follower clusters](blog-posts/follower-cluster.md){:target="_blank"}**
