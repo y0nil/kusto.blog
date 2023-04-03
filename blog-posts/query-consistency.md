@@ -26,7 +26,7 @@ For example, if 1000 records are ingested each minute into a table in the databa
 ## Weakly consistent query heads
 
 By default - 20% of the nodes in the cluster, with a minimum of 2 nodes, and a maximum of 30 nodes - can serve as weakly consistent query heads.
-- For example, for a cluster with 15 nodes this means 6 nodes.
+- For example, for a cluster with 15 nodes this means 3 nodes.
 
 These parameters, as well as a few others, can be controlled using the cluster-level [Query weak consistency policy](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/management/query-weak-consistency-policy){:target="_blank"}.
 
