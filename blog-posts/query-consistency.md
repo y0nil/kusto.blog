@@ -26,21 +26,21 @@ For example, if 1000 records are ingested each minute into a table in the databa
 ## Weakly consistent query heads
 
 By default - 20% of the nodes in the cluster, with a minimum of 2 nodes, and a maximum of 30 nodes - can serve as weakly consistent query heads.
-- For example, for a cluster with 2-10 nodes this means 2 nodes, and for a cluster with 30 nodes, this means 6 nodes.
+- For example, for a cluster with 15 nodes this means 6 nodes.
 
 These parameters, as well as a few others, can be controlled using the cluster-level [Query weak consistency policy](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/management/query-weak-consistency-policy){:target="_blank"}.
 
-The same policy allows controlling the refresh rate of the database metadata on the weakly consistency query heads. By default, these nodes will start fetching the
+The same policy allows controlling the refresh rate of the database metadata on the weakly consistency query heads. By default, these nodes will refresh the
 latest database metadata every 2 minutes. This process that usually takes up to a few seconds, unless the amount of changes that occur in that period is very high.
 
 It's advised to start with the default values, and only adjust if necessary.
 
 ### Fetching the database metadata
 
-The database metadata, as mentioned earlier, is managed by the *database admin node*. Each transaction that modifies it (e.g., appends data, drops data, changes the schema, etc.)
+As mentioned above, the database metadata is managed by the *database admin node*. Each transaction that modifies it (e.g., appends data, drops data, changes the schema, etc.)
 gets committed to this node's memory, and changes are also written to persistent storage.
 
-When a weakly consistency query head starts refreshing the database metadata, it pulls the fetches of changes between the current database version it currently holds in memory, and the database's current version. This delta is downloaded from persistent storage.
+When a weakly consistency query head starts refreshing the database metadata, it fetches of changes between the current database version it currently holds in memory, and the database's current version. This delta is downloaded from persistent storage.
 
 In order to not increase the load on persistent storage, the amount of nodes in the cluster that can serve as weakly consistency query heads is limited, and so is the frequency at which
 these node fetch the latest version of the metadata.
@@ -49,12 +49,12 @@ these node fetch the latest version of the metadata.
 
 There are 3 modes of *weak* query consistency:
 
-|Mode                      |Description                                                                                                                         |
-|--------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-|Random                    | Queries are routed randomly to one of the nodes in the cluster that can serve as a weakly consistent query head.                   |
-|Affinitized by database   | All queries that run in the context of the same database get routed to the same weakly consistent query head.                      |
-|Affinitized by query text | All queries that have the same hash for their query text get routed to the same weakly consistent query head.                      |
-|Affinitized by session ID | All queries that have the same hash for their session ID (provided separately, explained [below](#specifying-in-client-request-properties) get routed to the same weakly consistent query head.|
+|Mode                                                                   |Description                                                                                                                                                                                      |
+|-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|Random                                                                 | Queries are routed randomly to one of the nodes in the cluster that can serve as a weakly consistent query head.                                                                                |
+|[Affinitized by database](#when-should-i-use-affinity-by-database)     | All queries that run in the context of the same database get routed to the same weakly consistent query head.                                                                                   |
+|[Affinitized by query text](#when-should-i-use-affinity-by-query)      | All queries that have the same hash for their query text get routed to the same weakly consistent query head.                                                                                   |
+|[Affinitized by session ID](#when-should-i-use-affinity-by-session-id) | All queries that have the same hash for their session ID (provided separately, explained [below](#specifying-in-client-request-properties)) get routed to the same weakly consistent query head.|
 
 ## When should I use weak consistency?
 
