@@ -45,7 +45,7 @@ When a weakly consistency query head starts refreshing the database metadata, it
 In order to not increase the load on persistent storage, the amount of nodes in the cluster that can serve as weakly consistency query heads is limited, and so is the frequency at which
 these node fetch the latest version of the metadata.
 
-The time it takes to complete fetching the database metadata may increase significnatly when the database has many child entities (tables, columns, extents), in which case the size of the persistent storage artifacts can be very large. As of this writing, there's no way to reduce that time, aside from distributing these entities across more than a single database.
+The time it takes to complete fetching the database metadata may increase significantly when the database has many child entities (tables, columns, extents), in which case the size of the persistent storage artifacts can be very large. As of this writing, there's no way to reduce that time, aside from distributing these entities across more than a single database.
 
 ## Weak consistency modes
 
@@ -194,7 +194,7 @@ When you run a query on *cluster A*, that invokes a remote query on *cluster B*,
 For example, if the query consistency was determined as `weakconsistency`, due to the query consistency policy defined on the workload group in *cluster A*, then the sub-query to cluster
 B will be sent with the same `weakconsistency`.
 
-*Only* if the query consistency policy defined on the workload group in *cluster B* overiddes the consistency mode (by specifying `IsRelaxable` = `false`), then the mode defined on *cluster B* applies.
+*Only* if the query consistency policy defined on the workload group in *cluster B* overrides the consistency mode (by specifying `IsRelaxable` = `false`), then the mode defined on *cluster B* applies.
 
 ---
 
