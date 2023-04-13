@@ -3,7 +3,7 @@ title: Query consistency
 ---
 # Query consistency in Kusto
 
-*Last modified: 03/31/2023*
+*Last modified: 04/13/2023*
 
 ## Strong consistency vs. weak consistency
 
@@ -45,9 +45,11 @@ When a weakly consistency query head starts refreshing the database metadata, it
 In order to not increase the load on persistent storage, the amount of nodes in the cluster that can serve as weakly consistency query heads is limited, and so is the frequency at which
 these node fetch the latest version of the metadata.
 
+The time it takes to complete fetching the database metadata may increase significnatly when the database has many child entities (tables, columns, extents), in which case the size of the persistent storage artifacts can be very large. As of this writing, there's no way to reduce that time, aside from distributing these entities across more than a single database.
+
 ## Weak consistency modes
 
-There are 3 modes of *weak* query consistency:
+There are 4 modes of *weak* query consistency:
 
 |Mode                                                                   |Description                                                                                                                                                                                      |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
