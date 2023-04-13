@@ -169,6 +169,24 @@ For example, the policy defined by the following control command, will result wi
 } ```
 ```
 
+### Specifying in Kusto.Explorer
+
+Controlling the consistency mode (*strong* or *weak*) can be done by following these steps:
+
+1. Click on "Tools" in the ribbon.
+2. Click on "Options".
+3. Click on "Connections".
+4. Set the "Query weak consistency" option to the desired mode.
+5. Click "OK".
+
+### Specifying in Kusto Web UI
+
+Controlling the consistency mode (*strong* or *weak*) can be done by following these steps:
+
+1. Click on the cog wheel icon ("Settings") in right part of the top bar.
+2. Click on "Connection"
+3. Use the "Weak consistency" toggle to select the desired mode.
+
 ## Query consistency in cross-cluster queries
 
 When you run a query on *cluster A*, that invokes a remote query on *cluster B*, the effective consistency mode is the one that was determined on *cluster A*, unless it gets overridden on *cluster B*.
