@@ -99,6 +99,8 @@ The control commands for managing this setup can be found [here](https://docs.mi
 
 ### Auto-prefetch
 
+**NOTE**: *This section relates only to V2 clusters. By default, V3 follower clusters automatically prefetch data artifacts as part of periodic refreshes.*
+
 By default, when the follower cluster periodically synchronizes the changes from its leader(s), it only fetches metadata objects and makes new data queryable, without immediately fetching the underlying data artifacts.
 - This allows for the periodic synchronization to be very quick, and make the latest data available for queries on the follower very shortly after it was ingested on the leader (usually up to a few seconds later).
 - The underlying data artifacts are periodically *warmed* from the leader's blob storage accounts to the follower's nodes' local disks, unless they were required for queries that ran before then.
