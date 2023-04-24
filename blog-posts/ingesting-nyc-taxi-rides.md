@@ -3,7 +3,7 @@ title: Ingesting 2 billion NYC taxi rides
 ---
 # Ingesting 2 billion new york city taxi rides into Kusto
 
-*Last modified: 03/06/2019*
+*Last modified: 04/24/2023*
 
 The [NYC Taxi & Limousine Commission](https://www1.nyc.gov/site/tlc/index.page){:target="_blank"} makes
 historical data about taxi trips and for-hire-vehicle trips (such as [Uber](analyzing-uber-rides-history.md){:target="_blank"},
@@ -206,21 +206,21 @@ And they're now fully indexed and ready to query.
 
 To demonstrate how easy it is to use Kusto's client libraries to ingest data in
 [supported formats](https://docs.microsoft.com/en-us/azure/kusto/management/data-ingestion/#supported-data-formats){:target="_blank"},
-I chose taking this data set, in CSV format (with this [schema](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_fhv.pdf){:target="_blank"})
-and ingesting it using a Queue Ingestion client, which is available in
+I chose taking this data set, in parquet format (with this [schema](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_fhv.pdf){:target="_blank"})
+and ingesting it using a Queued Ingestion client, which is available in
 [Kusto's .NET client library](https://docs.microsoft.com/en-us/azure/kusto/api/netfx/about-kusto-ingest){:target="_blank"}. Needless to say, that C# is just one of the
 languages in which the [client libraries](https://docs.microsoft.com/en-us/azure/kusto/api/){:target="_blank"}  are available.
 
 Looking at the [NYC Taxi & Limousine Commission's site](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page){:target="_blank"}, it's easy to dynamically build
-a list of URLs for these CSV files, and have them ingested from **Amazon S3**, where they were made available.
+a list of URLs for these parquet files, and have them ingested from their source.
 
 For the purpose of this ingestion I used:
 
 * A Kusto cluster with 6 `D14_v2` nodes (it was over-provisioned for the purpose of the previous section, 
   I [scaled](https://docs.microsoft.com/en-us/azure/data-explorer/manage-cluster-scale-out){:target="_blank"} it down later).
-* The [Microsoft.Azure.Kusto.Ingest.NETStandard](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest.NETStandard) NuGet package.
+* The [Microsoft.Azure.Kusto.Ingest](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest.NETStandard](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest){:target="_blank"} NuGet package.
 
-Based on the schema provided on the site, I created the following table in my database:
+Based on the schema provided on the site, I created the following table and ingestion mapping in my database:
 
 ```        
 .create table FHV_Trips (
@@ -231,7 +231,15 @@ Based on the schema provided on the site, I created the following table in my da
     dropoff_location_id:int,
     shared_ride_flag:bool
 )
-```
+
+.create-or-alter table FHV_Trips ingestion parquet mapping "FHV_Trips_mapping" '['
+  '{"Column": "dispatching_base_num", "Properties": {"Path": "$.dispatching_base_num"}},'
+  '{"Column": "pickup_datetime",      "Properties": {"Path": "$.pickup_datetime"}},'
+  '{"Column": "dropoff_datetime",     "Properties": {"Path": "$.dropOff_datetime"}},'
+  '{"Column": "pickup_location_id",   "Properties": {"Path": "$.PUlocationID"}},'
+  '{"Column": "dropoff_location_id",  "Properties": {"Path": "$.DOlocationID"}},'
+  '{"Column": "shared_ride_flag",     "Properties": {"Path": "$.SR_Flag"}}'
+']'
 
 And here's the simple application I wrote and ran:
 
@@ -247,23 +255,25 @@ public static void Main()
 
     var startTime = new DateTime(2015, 01, 01);
     var endTime = new DateTime(2018, 07, 01);
-    var estimatedFileSize = (int)Math.Pow(10, 9);
+    
+    var ingestionMapping = new IngestionMapping
+    {
+        IngestionMappingKind = Kusto.Data.Ingestion.IngestionMappingKind.Parquet,
+        IngestionMappingReference = "FHV_Trips_mapping"
+    };
+    
     var ingestionProperties = new KustoIngestionProperties(databaseName: "TaxiRides", tableName: "FHV_Trips")
     {
-         // I specify this because the provided source CSV files include a header line with the column names
-        IgnoreFirstRecord = true
+        IngestionMapping = ingestionMapping
     };
 
     using (var ingestClient = KustoIngestFactory.CreateQueuedIngestClient(kustoConnectionStringBuilder))
     {
         for (var dt = startTime; dt < endTime; dt = dt.AddMonths(1))
         {
-            var uri = $"https://s3.amazonaws.com/nyc-tlc/trip+data/fhv_tripdata_{dt.ToString("yyyy-MM")}.csv";
-            ingestClient.IngestFromSingleBlob(
-                blobUri: uri,
-                deleteSourceOnSuccess: false,
-                ingestionProperties: ingestionProperties,
-                rawDataSize: estimatedFileSize);
+            var uri = $"https://d37ci6vzurychx.cloudfront.net/trip-data/fhv_tripdata_{dt.ToString("yyyy-MM")}.parquet";
+            Console.WriteLine("Queueing file '{0}' for ingestion", uri);
+            ingestClient.IngestFromStorage(uri, ingestionProperties);
         }
     }
 }
@@ -284,7 +294,7 @@ Using the [.show commands](https://docs.microsoft.com/en-us/azure/kusto/manageme
 .show commands 
 | where StartedOn > datetime(2019-02-04 06:00)
 | where CommandType == "DataIngestPull"
-| where Text has 'ingest async into FHV_Trips'
+| where Text has '.ingest-from-storage async into FHV_Trips'
 | summarize ['# Commands'] = count(), 
             StartTime = min(StartedOn), 
             EndTime = max(LastUpdatedOn)
