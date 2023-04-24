@@ -240,6 +240,7 @@ Based on the schema provided on the site, I created the following table and inge
   '{"Column": "dropoff_location_id",  "Properties": {"Path": "$.DOlocationID"}},'
   '{"Column": "shared_ride_flag",     "Properties": {"Path": "$.SR_Flag"}}'
 ']'
+```
 
 And here's the simple application I wrote and ran:
 
