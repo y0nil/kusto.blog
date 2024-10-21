@@ -141,7 +141,7 @@ The following request classification function splits incoming requests into 4 cu
 * The (UTC) time of day
 
 ```
-.alter cluster policy request_classification '{"IsEnabled":true} <|
+.alter cluster policy request_classification '{"IsEnabled":true}' <|
     case(current_principal_is_member_of('aadgroup=somesecuritygroup@contoso.com'), "Members of some security group",
         request_properties.current_database == "MyDatabase" and request_properties.current_principal has 'aadapp=', "Applications in MyDatabase",
         request_properties.current_application in ("Kusto.WebExplorer", "Kusto.Explorer") and request_properties.request_type == "Query", "Ad-hoc queries",
