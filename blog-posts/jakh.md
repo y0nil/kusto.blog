@@ -3,7 +3,7 @@ title: Just another Kusto hacker (JAKH)
 ---
 # Just another Kusto hacker *(JAKH)*
 
-*Last modified: 11/08/2018*
+*Last modified: 04/01/2025*
 
 Back in 2017, the Kusto team came up with yet another brilliant idea:
 Many people simply love our query language, why don't we challenge them with writing creative, thought-provoking,
@@ -14,6 +14,8 @@ When we started this contest, we had no expectation that the queries it would yi
 Dozens of people within Microsoft participated in the contest (even though the prizes we offered were rather modest). They have proven they are true **Kusto hackers**.
 
 Now, are *you* up for the challenge?
+
+**The 2025 edition of the [Just another Kusto hacker](https://aka.ms/JAKH){:target="_blank"} contest is now open!**{: style="color: green; opacity: 0.80;" }
 
 * TOC
 {:toc}
