@@ -15,7 +15,7 @@ Dozens of people within Microsoft participated in the contest (even though the p
 
 Now, are *you* up for the challenge?
 
-**The 2025 edition of the [Just another Kusto hacker](https://aka.ms/JAKH){:target="_blank"} contest is now open!**{: style="color: green; opacity: 0.80;" }
+**For more creative queries, check out the 2025 edition of the [Just another Kusto hacker](https://aka.ms/JAKH){:target="_blank"} contest**{: style="color: green; opacity: 0.80;" }
 
 * TOC
 {:toc}
