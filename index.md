@@ -8,7 +8,7 @@ and will help you make sure you make the most out of your Kusto cluster.
 
 **Kusto is available for *FREE* using an [emulator](https://docs.microsoft.com/en-us/azure/data-explorer/kusto-emulator-overview){:target="_blank"} or [in the cloud](https://docs.microsoft.com/en-us/azure/data-explorer/start-for-free){:target="_blank"}.**{: style="color: green; opacity: 0.80;" }
 
-**You might also enjoy solving cases at the [Kusto Detective Agency](https://detective.kusto.io/){:target="_blank"}, or participate in the 2025 edition of the [Just another Kusto hacker](https://aka.ms/jakh){:target="_blank"} contest**{: style="color: green; opacity: 0.80;" }.
+**You might also enjoy solving cases at the [Kusto Detective Agency](https://detective.kusto.io/){:target="_blank"}, or admire the creations submitted to the 2025 edition of the [Just another Kusto hacker](https://aka.ms/jakh){:target="_blank"} contest**{: style="color: green; opacity: 0.80;" }.
 
 <p align="center">
   <img src="resources/images/adx-logo.png">
